@@ -1,0 +1,9 @@
+anthropic
+fastapi
+uvicorn
+asyncio
+pytest
+black
+flake8
+python-dotenv
+EOF < /dev/null

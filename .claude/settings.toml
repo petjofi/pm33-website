@@ -1,0 +1,64 @@
+[project]
+name = "PM33 Claude Execution - $100K MRR"
+description = "Unified workspace for PM33 app development, marketing automation, and business execution"
+
+[ai_interaction]
+default_approach = "think_hard_answer_short"
+reasoning_style = "deep_analysis_concise_output" 
+response_format = "actionable_and_brief"
+
+# App Development Hooks
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher]
+tool_name = "edit_file"
+file_paths = ["app/**/*.js", "app/**/*.py", "app/**/*.tsx"]
+command = "npm test && eslint --fix $CLAUDE_FILE_PATHS"
+
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher] 
+tool_name = "edit_file"
+file_paths = ["app/mcp-server/**/*.py"]
+command = "python app/mcp-server/test-mcp-commands.py && python app/mcp-server/validate-protocol.py $CLAUDE_FILE_PATHS"
+
+# Marketing Automation Hooks
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher]
+tool_name = "create_file"
+file_paths = ["marketing/content-generation/**/*.md"]
+command = "python marketing/content-generation/auto-publish.py $CLAUDE_FILE_PATHS"
+
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher]
+tool_name = "edit_file"
+file_paths = ["marketing/social-automation/**/*.py"]
+command = "python marketing/social-automation/schedule-posts.py $CLAUDE_FILE_PATHS"
+
+# Sales Pipeline Hooks
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher]
+tool_name = "edit_file"
+file_paths = ["sales/**/*.json", "sales/**/*.py"]
+command = "python sales/pipeline-management/update-crm.py $CLAUDE_FILE_PATHS"
+
+# Operations & Analytics Hooks
+[[hooks]]
+event = "PostToolUse"
+[hooks.matcher]
+tool_name = "edit_file"
+file_paths = ["operations/analytics/**/*.py"]
+command = "python operations/analytics/update-dashboards.py $CLAUDE_FILE_PATHS"
+
+# Daily Automation Trigger
+[[hooks]]
+event = "Notification"
+command = "python automation/schedulers/daily-automation.py && python operations/analytics/daily-report.py"
+
+# Weekly Strategy Review
+[[hooks]]
+event = "Notification"
+command = "python strategy/execution-plan/weekly-review.py && curl -X POST $SLACK_WEBHOOK"
