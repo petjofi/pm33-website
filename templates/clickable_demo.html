@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM33 Strategic AI Co-Pilot - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2563eb;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header .tagline {
+            color: #64748b;
+            font-size: 1.2rem;
+            margin-bottom: 16px;
+        }
+
+        .strategic-health {
+            display: inline-flex;
+            align-items: center;
+            background: #eff6ff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .health-score {
+            margin-left: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Demo Grid */
+        .demo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px -8px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1a202c;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-live {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .badge-demo {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        /* Strategic AI Chat */
+        .chat-container {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            background: #fafafa;
+            margin-bottom: 12px;
+        }
+
+        .message {
+            margin-bottom: 16px;
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        .user-message {
+            background: #2563eb;
+            color: white;
+            margin-left: 20%;
+        }
+
+        .ai-message {
+            background: white;
+            border: 1px solid #e2e8f0;
+            margin-right: 20%;
+        }
+
+        .framework-tag {
+            display: inline-block;
+            background: #eff6ff;
+            color: #2563eb;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-top: 8px;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 8px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .send-btn {
+            padding: 12px 24px;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #1d4ed8;
+        }
+
+        /* Drag-Drop Roadmap */
+        .roadmap-container {
+            height: 400px;
+        }
+
+        .roadmap-items {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .roadmap-item {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            cursor: grab;
+            transition: all 0.2s ease;
+            position: relative;
+        }
+
+        .roadmap-item:hover {
+            border-color: #2563eb;
+            transform: translateX(4px);
+        }
+
+        .roadmap-item.dragging {
+            opacity: 0.6;
+            transform: rotate(5deg);
+            cursor: grabbing;
+        }
+
+        .roadmap-item.drop-target {
+            border-color: #059669;
+            background: #ecfdf5;
+        }
+
+        .priority-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .priority-critical {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        .priority-high {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .priority-medium {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .priority-low {
+            background: #f0fdf4;
+            color: #15803d;
+        }
+
+        .ice-score {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        /* Dashboard */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            height: 400px;
+        }
+
+        .dashboard-widget {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            border-radius: 8px;
+            height: 8px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: #2563eb;
+            transition: width 1s ease;
+        }
+
+        .alert-item {
+            padding: 8px 12px;
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+        }
+
+        /* What-If Scenarios */
+        .scenario-builder {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .scenario-selector {
+            margin-bottom: 16px;
+        }
+
+        .scenario-selector select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .scenario-results {
+            flex: 1;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .impact-metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .impact-value {
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        /* Achievements */
+        .achievements-container {
+            grid-column: 1 / -1;
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .achievement-badge {
+            text-align: center;
+            padding: 16px;
+            border-radius: 8px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-unlocked {
+            background: #ecfdf5;
+            border-color: #059669;
+            color: #065f46;
+        }
+
+        .achievement-locked {
+            background: #f8fafc;
+            border-color: #e2e8f0;
+            color: #64748b;
+            opacity: 0.6;
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .achievement-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .achievement-desc {
+            font-size: 0.875rem;
+        }
+
+        /* Viral Sharing */
+        .viral-section {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .share-btn {
+            padding: 12px 24px;
+            background: white;
+            color: #667eea;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Animations */
+        @keyframes achievementUnlock {
+            0% { transform: scale(0) rotate(180deg); opacity: 0; }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .achievement-unlock-animation {
+            animation: achievementUnlock 0.6s ease-out;
+        }
+
+        @keyframes scoreIncrease {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); color: #059669; }
+            100% { transform: scale(1); }
+        }
+
+        .score-animation {
+            animation: scoreIncrease 0.5s ease-out;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .achievements-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🤖 PM33 Strategic AI Co-Pilot</h1>
+            <p class="tagline">Replace limited strategic capabilities Strategic Consultants with AI-Powered Intelligence</p>
+            <div class="strategic-health">
+                📊 Strategic Health Score: <span class="health-score" id="healthScore">87/100</span>
+            </div>
+        </div>
+
+        <!-- Main Demo Grid -->
+        <div class="demo-grid">
+            <!-- Strategic AI Chat (LIVE) -->
+            <div class="demo-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        💬 Strategic AI Chat
+                    </h3>
+                    <span class="badge badge-live">LIVE</span>
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message ai-message">
+                            <strong>PM33 Strategic AI:</strong> Welcome! Ask me strategic questions like "Our competitor just raised $10M, strategic response?" or "Budget for 2 engineers OR $50K marketing - which drives growth?"
+                            <span class="framework-tag">Ready for Strategic Analysis</span>
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="chatInput" placeholder="Ask a strategic question..." maxlength="200">
+                        <button class="send-btn" onclick="sendMessage()">Send</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategic Dashboard -->
+            <div class="demo-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        📊 Strategic Dashboard
+                    </h3>
+                    <span class="badge badge-demo">DEMO</span>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-widget">
+                        <h4>🎯 OKR Progress</h4>
+                        <div style="margin-top: 12px;">
+                            <div>Growth: 65%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <div>Retention: 89%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 89%"></div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px;">
+                            <div>Velocity: 92%</div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-widget">
+                        <h4>🚨 Strategic Alerts</h4>
+                        <div class="alert-item">
+                            🏢 Competitor launched AI features
+                        </div>
+                        <div class="alert-item">
+                            💰 Q3 budget review due next week
+                        </div>
+                        <div class="alert-item">
+                            📈 User growth trending below target
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Drag-Drop Roadmap -->
+            <div class="demo-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        🎯 Drag-Drop Roadmap
+                    </h3>
+                    <span class="badge badge-demo">DEMO</span>
+                </div>
+                <div class="roadmap-container">
+                    <p style="margin-bottom: 16px; color: #64748b;">Drag items to reorder priority:</p>
+                    <div class="roadmap-items" id="roadmapItems">
+                        <div class="roadmap-item" draggable="true" data-priority="critical">
+                            <span class="priority-badge priority-critical">Critical</span>
+                            <h4>🚀 AI Strategic Chat Enhancement</h4>
+                            <div class="ice-score">ICE Score: 8.5 (Impact: 9, Confidence: 8, Ease: 9)</div>
+                        </div>
+                        <div class="roadmap-item" draggable="true" data-priority="high">
+                            <span class="priority-badge priority-high">High</span>
+                            <h4>📱 Mobile App MVP</h4>
+                            <div class="ice-score">ICE Score: 7.2 (Impact: 8, Confidence: 7, Ease: 8)</div>
+                        </div>
+                        <div class="roadmap-item" draggable="true" data-priority="medium">
+                            <span class="priority-badge priority-medium">Medium</span>
+                            <h4>🔧 Technical Debt Cleanup</h4>
+                            <div class="ice-score">ICE Score: 5.8 (Impact: 6, Confidence: 8, Ease: 6)</div>
+                        </div>
+                        <div class="roadmap-item" draggable="true" data-priority="low">
+                            <span class="priority-badge priority-low">Low</span>
+                            <h4>✨ Advanced Analytics Dashboard</h4>
+                            <div class="ice-score">ICE Score: 4.2 (Impact: 6, Confidence: 5, Ease: 6)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- What-If Scenarios -->
+            <div class="demo-card">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        🔮 What-If Scenarios
+                    </h3>
+                    <span class="badge badge-demo">DEMO</span>
+                </div>
+                <div class="scenario-builder">
+                    <div class="scenario-selector">
+                        <select id="scenarioSelect" onchange="runScenario()">
+                            <option value="">Select a scenario...</option>
+                            <option value="engineers">Hire 2 additional engineers</option>
+                            <option value="marketing">Increase marketing budget 50%</option>
+                            <option value="competitor">Competitor launches free tier</option>
+                            <option value="europe">Expand to European markets</option>
+                        </select>
+                    </div>
+                    <div class="scenario-results" id="scenarioResults">
+                        <p style="color: #64748b; text-align: center; margin-top: 60px;">
+                            Select a scenario above to see AI-powered predictions and strategic recommendations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievements Section -->
+        <div class="achievements-container">
+            <h3 style="text-align: center; margin-bottom: 24px;">🏆 Strategic Achievements</h3>
+            <div class="achievements-grid">
+                <div class="achievement-badge achievement-unlocked" id="achievement1">
+                    <div class="achievement-icon">🤔</div>
+                    <div class="achievement-title">Strategic Thinking</div>
+                    <div class="achievement-desc">Ask 5 strategic questions</div>
+                </div>
+                <div class="achievement-badge achievement-locked" id="achievement2">
+                    <div class="achievement-icon">🎯</div>
+                    <div class="achievement-title">Framework Master</div>
+                    <div class="achievement-desc">Use 3 different frameworks</div>
+                </div>
+                <div class="achievement-badge achievement-locked" id="achievement3">
+                    <div class="achievement-icon">📊</div>
+                    <div class="achievement-title">Roadmap Optimizer</div>
+                    <div class="achievement-desc">Reorder roadmap priorities</div>
+                </div>
+                <div class="achievement-badge achievement-locked" id="achievement4">
+                    <div class="achievement-icon">🔮</div>
+                    <div class="achievement-title">Strategic Guru</div>
+                    <div class="achievement-desc">Run what-if scenarios</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Viral Sharing Section -->
+        <div class="viral-section">
+            <h3>🚀 Share Your Strategic Intelligence Journey</h3>
+            <p>Show your network how AI is transforming strategic product management</p>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="shareLinkedIn()">📱 Share on LinkedIn</button>
+                <button class="share-btn" onclick="shareTwitter()">🐦 Share on Twitter</button>
+                <button class="share-btn" onclick="inviteTeam()">👥 Invite Team</button>
+                <button class="share-btn" onclick="joinBeta()">🎯 Join Beta Program</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state
+        let strategicQuestions = 0;
+        let frameworksUsed = new Set();
+        let roadmapInteracted = false;
+        let scenariosRun = 0;
+
+        // Strategic AI Chat Functionality
+        async function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user-message';
+            userMsg.innerHTML = `<strong>You:</strong> ${message}`;
+            messages.appendChild(userMsg);
+
+            // Clear input
+            input.value = '';
+            strategicQuestions++;
+
+            // Show loading
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'message ai-message';
+            loadingMsg.innerHTML = '<strong>PM33 Strategic AI:</strong> 🎯 Analyzing with proven PM frameworks...';
+            messages.appendChild(loadingMsg);
+
+            // Scroll to bottom
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                // Make actual API call to your working system
+                const response = await fetch('http://localhost:8000/api/mock-strategic-response', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                // Remove loading message
+                messages.removeChild(loadingMsg);
+
+                // Add AI response
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'message ai-message';
+                
+                // Extract framework from response
+                let framework = 'Strategic Analysis';
+                const frameworkMatch = data.response.match(/\*\*RECOMMENDED FRAMEWORK:\*\*\s*([^*\n]+)/);
+                if (frameworkMatch) {
+                    framework = frameworkMatch[1].trim();
+                    frameworksUsed.add(framework);
+                }
+
+                aiMsg.innerHTML = `
+                    <strong>PM33 Strategic AI:</strong> ${data.response}
+                    <span class="framework-tag">Framework: ${framework}</span>
+                `;
+                messages.appendChild(aiMsg);
+
+                // Check achievements
+                checkAchievements();
+
+            } catch (error) {
+                // Remove loading message
+                messages.removeChild(loadingMsg);
+
+                // Add error message with fallback response
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'message ai-message';
+                aiMsg.innerHTML = `
+                    <strong>PM33 Strategic AI:</strong> I understand you're asking about "${message}". In a live demo, I would analyze this using proven PM frameworks like ICE prioritization or competitive response strategies, then generate specific actionable tasks for your team.
+                    <span class="framework-tag">Framework: Strategic Analysis</span>
+                `;
+                messages.appendChild(aiMsg);
+                
+                // Still check achievements for demo purposes
+                checkAchievements();
+            }
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        // Handle Enter key in chat input
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Drag and Drop Roadmap
+        let draggedItem = null;
+
+        document.querySelectorAll('.roadmap-item').forEach(item => {
+            item.addEventListener('dragstart', function(e) {
+                draggedItem = this;
+                this.classList.add('dragging');
+            });
+
+            item.addEventListener('dragend', function(e) {
+                this.classList.remove('dragging');
+                roadmapInteracted = true;
+                checkAchievements();
+            });
+
+            item.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.classList.add('drop-target');
+            });
+
+            item.addEventListener('dragleave', function(e) {
+                this.classList.remove('drop-target');
+            });
+
+            item.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.classList.remove('drop-target');
+                
+                if (draggedItem && draggedItem !== this) {
+                    // Swap positions
+                    const container = document.getElementById('roadmapItems');
+                    const allItems = Array.from(container.children);
+                    const draggedIndex = allItems.indexOf(draggedItem);
+                    const targetIndex = allItems.indexOf(this);
+
+                    if (draggedIndex < targetIndex) {
+                        container.insertBefore(draggedItem, this.nextSibling);
+                    } else {
+                        container.insertBefore(draggedItem, this);
+                    }
+
+                    // Animate ICE score update
+                    updateICEScores();
+                }
+            });
+        });
+
+        function updateICEScores() {
+            // Simulate ICE score recalculation
+            const items = document.querySelectorAll('.roadmap-item');
+            items.forEach((item, index) => {
+                const scoreElement = item.querySelector('.ice-score');
+                setTimeout(() => {
+                    const newScore = (8.5 - index * 0.8).toFixed(1);
+                    scoreElement.style.transition = 'all 0.5s ease';
+                    scoreElement.style.transform = 'scale(1.1)';
+                    scoreElement.style.color = '#059669';
+                    setTimeout(() => {
+                        scoreElement.innerHTML = `ICE Score: ${newScore} (Updated based on new priority)`;
+                        scoreElement.style.transform = 'scale(1)';
+                        scoreElement.style.color = '#64748b';
+                    }, 250);
+                }, index * 100);
+            });
+        }
+
+        // What-If Scenarios
+        function runScenario() {
+            const select = document.getElementById('scenarioSelect');
+            const results = document.getElementById('scenarioResults');
+            const scenario = select.value;
+
+            if (!scenario) return;
+
+            scenariosRun++;
+            checkAchievements();
+
+            const scenarios = {
+                engineers: {
+                    title: "🔧 Hire 2 Additional Engineers",
+                    impacts: [
+                        { metric: "Development Velocity", value: "+40%" },
+                        { metric: "Feature Delivery", value: "Q3 → Q2" },
+                        { metric: "Technical Debt", value: "-25%" },
+                        { metric: "Additional Cost", value: "$240K/year" }
+                    ]
+                },
+                marketing: {
+                    title: "📈 Increase Marketing Budget 50%",
+                    impacts: [
+                        { metric: "User Acquisition", value: "+60%" },
+                        { metric: "CAC Efficiency", value: "+15%" },
+                        { metric: "Market Reach", value: "+35%" },
+                        { metric: "Additional Cost", value: "$75K/quarter" }
+                    ]
+                },
+                competitor: {
+                    title: "⚔️ Competitor Launches Free Tier",
+                    impacts: [
+                        { metric: "User Churn Risk", value: "+20%" },
+                        { metric: "Pricing Pressure", value: "High" },
+                        { metric: "Differentiation Need", value: "Critical" },
+                        { metric: "Response Timeline", value: "30 days" }
+                    ]
+                },
+                europe: {
+                    title: "🌍 Expand to European Markets",
+                    impacts: [
+                        { metric: "Market TAM", value: "+150%" },
+                        { metric: "Localization Cost", value: "$180K" },
+                        { metric: "Regulatory Complexity", value: "High" },
+                        { metric: "Time to Launch", value: "6 months" }
+                    ]
+                }
+            };
+
+            const scenarioData = scenarios[scenario];
+            let html = `
+                <h4>${scenarioData.title}</h4>
+                <p style="margin: 12px 0; color: #64748b;">AI-Predicted Strategic Impact:</p>
+            `;
+
+            scenarioData.impacts.forEach(impact => {
+                html += `
+                    <div class="impact-metric">
+                        <span>${impact.metric}:</span>
+                        <span class="impact-value">${impact.value}</span>
+                    </div>
+                `;
+            });
+
+            html += `
+                <div style="margin-top: 16px; padding: 12px; background: #eff6ff; border-radius: 6px; font-size: 0.875rem;">
+                    <strong>Strategic Recommendation:</strong> Based on this analysis, I recommend creating a detailed implementation plan with risk mitigation strategies.
+                </div>
+            `;
+
+            results.innerHTML = html;
+        }
+
+        // Achievement System
+        function checkAchievements() {
+            // Strategic Thinking (5 questions)
+            if (strategicQuestions >= 5) {
+                unlockAchievement('achievement1');
+            }
+
+            // Framework Master (3 frameworks)
+            if (frameworksUsed.size >= 3) {
+                unlockAchievement('achievement2');
+            }
+
+            // Roadmap Optimizer (interact with roadmap)
+            if (roadmapInteracted) {
+                unlockAchievement('achievement3');
+            }
+
+            // Strategic Guru (run scenario)
+            if (scenariosRun >= 1) {
+                unlockAchievement('achievement4');
+            }
+
+            // Update health score
+            updateHealthScore();
+        }
+
+        function unlockAchievement(achievementId) {
+            const achievement = document.getElementById(achievementId);
+            if (achievement.classList.contains('achievement-locked')) {
+                achievement.classList.remove('achievement-locked');
+                achievement.classList.add('achievement-unlocked');
+                achievement.classList.add('achievement-unlock-animation');
+                
+                setTimeout(() => {
+                    achievement.classList.remove('achievement-unlock-animation');
+                }, 600);
+            }
+        }
+
+        function updateHealthScore() {
+            const baseScore = 75;
+            const questionBonus = Math.min(strategicQuestions * 2, 10);
+            const frameworkBonus = frameworksUsed.size * 3;
+            const roadmapBonus = roadmapInteracted ? 5 : 0;
+            const scenarioBonus = scenariosRun * 3;
+            
+            const newScore = Math.min(baseScore + questionBonus + frameworkBonus + roadmapBonus + scenarioBonus, 100);
+            
+            const scoreElement = document.getElementById('healthScore');
+            if (parseInt(scoreElement.textContent) !== newScore) {
+                scoreElement.textContent = `${newScore}/100`;
+                scoreElement.classList.add('score-animation');
+                setTimeout(() => {
+                    scoreElement.classList.remove('score-animation');
+                }, 500);
+            }
+        }
+
+        // Viral Sharing Functions
+        function shareLinkedIn() {
+            const text = `Just tried PM33's Strategic AI Co-Pilot! 🚀 It applies proven PM frameworks like ICE and RICE to strategic decisions and generates executable tasks automatically. This is what replacing limited strategic capabilities consultants with AI looks like! #ProductManagement #AI #Strategy`;
+            const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}&summary=${encodeURIComponent(text)}`;
+            window.open(url, '_blank');
+        }
+
+        function shareTwitter() {
+            const text = `PM33's Strategic AI Co-Pilot is incredible! 🤖 It applies strategic frameworks automatically and turns insights into executable tasks. The future of product management is here! #PM #AI #Strategy`;
+            const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(url, '_blank');
+        }
+
+        function inviteTeam() {
+            const subject = "Check out PM33 Strategic AI Co-Pilot";
+            const body = "I just tried this amazing AI strategic consultant replacement. It applies proven PM frameworks and generates executable tasks automatically. Worth checking out for our strategic planning!";
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        function joinBeta() {
+            alert("🎉 Thanks for your interest! In a real demo, this would open the beta signup form. For now, you can continue exploring the strategic AI chat and interactive features!");
+        }
+
+        // Initialize demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some sample strategic questions for easy testing
+            const suggestions = [
+                "Our competitor just raised $10M Series A. Strategic response?",
+                "Budget for 2 engineers OR $50K marketing. Which drives growth?", 
+                "Should we expand to European markets this quarter?",
+                "Technical debt vs new features - how to balance sprint?",
+                "Competitor launched our key feature for free. What should we do?"
+            ];
+
+            // Add suggestion buttons
+            const chatContainer = document.querySelector('.chat-container');
+            const suggestionsDiv = document.createElement('div');
+            suggestionsDiv.innerHTML = `
+                <div style="margin: 8px 0; font-size: 0.875rem; color: #64748b;">
+                    Quick strategic questions to try:
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+                    ${suggestions.map(q => `<button onclick="document.getElementById('chatInput').value='${q}'; sendMessage();" style="padding: 4px 8px; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 4px; cursor: pointer; font-size: 0.75rem;">${q.substring(0, 30)}...</button>`).join('')}
+                </div>
+            `;
+            chatContainer.insertBefore(suggestionsDiv, chatContainer.lastElementChild);
+        });
+    </script>
+</body>
+</html>

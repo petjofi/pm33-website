@@ -1,0 +1,33 @@
+{
+  "date_generated": "2025-08-19T13:08:27.073686",
+  "week_number": 1,
+  "week_dates": "Aug 18-24",
+  "tasks": [
+    {
+      "type": "development",
+      "task": "Continue Strategic AI implementation",
+      "priority": "high",
+      "estimated_time": "3 hours"
+    },
+    {
+      "type": "maintenance",
+      "task": "Check and respond to critical communications",
+      "priority": "high",
+      "estimated_time": "15 minutes"
+    },
+    {
+      "type": "maintenance",
+      "task": "Update task progress and log work completed",
+      "priority": "medium",
+      "estimated_time": "10 minutes"
+    },
+    {
+      "type": "maintenance",
+      "task": "Monitor Claude Code automation setup",
+      "priority": "medium",
+      "estimated_time": "10 minutes"
+    }
+  ],
+  "completed_today": [],
+  "notes": ""
+}

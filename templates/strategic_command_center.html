@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM33 Strategic AI Co-Pilot - Command Center</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        }
+                    },
+                    borderRadius: {
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --background: 0 0% 100%;
+            --foreground: 222.2 84% 4.9%;
+            --card: 0 0% 100%;
+            --card-foreground: 222.2 84% 4.9%;
+            --popover: 0 0% 100%;
+            --popover-foreground: 222.2 84% 4.9%;
+            --primary: 221.2 83.2% 53.3%;
+            --primary-foreground: 210 40% 98%;
+            --secondary: 210 40% 96%;
+            --secondary-foreground: 222.2 84% 4.9%;
+            --muted: 210 40% 96%;
+            --muted-foreground: 215.4 16.3% 46.9%;
+            --accent: 210 40% 96%;
+            --accent-foreground: 222.2 84% 4.9%;
+            --destructive: 0 84.2% 60.2%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 214.3 31.8% 91.4%;
+            --input: 214.3 31.8% 91.4%;
+            --ring: 221.2 83.2% 53.3%;
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: 222.2 84% 4.9%;
+            --foreground: 210 40% 98%;
+            --card: 222.2 84% 4.9%;
+            --card-foreground: 210 40% 98%;
+            --popover: 222.2 84% 4.9%;
+            --popover-foreground: 210 40% 98%;
+            --primary: 217.2 91.2% 59.8%;
+            --primary-foreground: 222.2 84% 4.9%;
+            --secondary: 217.2 32.6% 17.5%;
+            --secondary-foreground: 210 40% 98%;
+            --muted: 217.2 32.6% 17.5%;
+            --muted-foreground: 215 20.2% 65.1%;
+            --accent: 217.2 32.6% 17.5%;
+            --accent-foreground: 210 40% 98%;
+            --destructive: 0 62.8% 30.6%;
+            --destructive-foreground: 210 40% 98%;
+            --border: 217.2 32.6% 17.5%;
+            --input: 217.2 32.6% 17.5%;
+            --ring: 224.3 76.3% 94.1%;
+        }
+
+        * {
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        .card {
+            background-color: hsl(var(--card));
+            color: hsl(var(--card-foreground));
+            border: 1px solid hsl(var(--border));
+        }
+
+        .strategic-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+        }
+
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes pulse-strategic {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .strategic-pulse {
+            animation: pulse-strategic 2s ease-in-out infinite;
+        }
+
+        .vertical-roadmap {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+        }
+
+        .priority-item {
+            transition: all 0.3s ease;
+            cursor: move;
+        }
+
+        .priority-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px -8px rgba(59, 130, 246, 0.5);
+        }
+
+        .timeline-bar {
+            transition: width 0.5s ease;
+        }
+
+        .strategic-health-bar {
+            background: linear-gradient(90deg, #ef4444 0%, #f59e0b 25%, #10b981 50%, #3b82f6 75%, #8b5cf6 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background font-sans antialiased">
+    <!-- Strategic Navigation Header -->
+    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div class="container flex h-16 items-center justify-between px-6">
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-primary-foreground font-bold text-sm">AI</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">PM33 Strategic AI Co-Pilot</h1>
+                        <p class="text-xs text-muted-foreground">Replace limited strategic capabilities Strategic Consultants</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Strategic Health Score -->
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <span class="text-sm font-medium">Strategic Health:</span>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-24 h-2 bg-secondary rounded-full overflow-hidden">
+                            <div class="strategic-health-bar h-full w-[87%] rounded-full"></div>
+                        </div>
+                        <span class="text-sm font-bold text-primary" id="healthScore">87/100</span>
+                    </div>
+                </div>
+                
+                <!-- User Menu -->
+                <div class="flex items-center space-x-2">
+                    <button class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+                        <span class="text-xs font-medium">TC</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Strategic Navigation Tabs -->
+        <div class="border-t">
+            <div class="container px-6">
+                <nav class="flex items-center space-x-6 text-sm font-medium" id="mainNav">
+                    <button class="nav-tab active flex items-center space-x-2 py-3 border-b-2 border-primary text-primary" data-tab="command">
+                        <span>🎯</span>
+                        <span>Command Center</span>
+                    </button>
+                    <button class="nav-tab flex items-center space-x-2 py-3 border-b-2 border-transparent hover:text-primary" data-tab="intelligence">
+                        <span>🧠</span>
+                        <span>Intelligence Engine</span>
+                    </button>
+                    <button class="nav-tab flex items-center space-x-2 py-3 border-b-2 border-transparent hover:text-primary" data-tab="roadmap">
+                        <span>🗺️</span>
+                        <span>Roadmap Intelligence</span>
+                    </button>
+                    <button class="nav-tab flex items-center space-x-2 py-3 border-b-2 border-transparent hover:text-primary" data-tab="competitive">
+                        <span>🏢</span>
+                        <span>Competitive Intelligence</span>
+                    </button>
+                    <button class="nav-tab flex items-center space-x-2 py-3 border-b-2 border-transparent hover:text-primary" data-tab="resources">
+                        <span>🔄</span>
+                        <span>Resource Optimizer</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Strategic Context Bar -->
+    <div class="bg-muted/50 border-b">
+        <div class="container px-6 py-2">
+            <div class="flex items-center justify-between text-sm">
+                <div class="flex items-center space-x-4">
+                    <span class="font-medium">Context:</span>
+                    <span class="px-2 py-1 bg-primary/10 text-primary rounded-md">TechCorp Series A</span>
+                    <span class="text-muted-foreground">|</span>
+                    <span class="font-medium">Active:</span>
+                    <span class="px-2 py-1 bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded-md">Competitive Response</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <span class="font-medium">Alerts:</span>
+                    <span class="px-2 py-1 bg-red-100 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-md">2 High Priority</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container px-6 py-8">
+        <!-- Strategic Command Center -->
+        <div id="tab-command" class="tab-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Strategic Health Overview -->
+                <div class="lg:col-span-2">
+                    <div class="card rounded-xl p-6 mb-6">
+                        <h2 class="text-xl font-semibold mb-4">🎯 Strategic Command Center</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Strategic Health Metrics -->
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-medium mb-3">Strategic Health Overview</h3>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Strategic Decisions</span>
+                                        <span class="text-sm text-primary font-semibold">92%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-secondary rounded-full">
+                                        <div class="h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-full w-[92%]"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Framework Usage</span>
+                                        <span class="text-sm text-primary font-semibold">85%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-secondary rounded-full">
+                                        <div class="h-full bg-gradient-to-r from-green-500 to-green-600 rounded-full w-[85%]"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Execution Alignment</span>
+                                        <span class="text-sm text-primary font-semibold">89%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-secondary rounded-full">
+                                        <div class="h-full bg-gradient-to-r from-purple-500 to-purple-600 rounded-full w-[89%]"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-sm font-medium">Outcome Accuracy</span>
+                                        <span class="text-sm text-primary font-semibold">78%</span>
+                                    </div>
+                                    <div class="w-full h-2 bg-secondary rounded-full">
+                                        <div class="h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full w-[78%]"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Active Strategic Decisions -->
+                            <div class="space-y-4">
+                                <h3 class="text-lg font-medium mb-3">Active Strategic Decisions</h3>
+                                
+                                <div class="space-y-3">
+                                    <div class="p-3 bg-secondary/50 rounded-lg">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-sm font-medium">Competitor Response</span>
+                                            <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-900/20 text-orange-600 dark:text-orange-400 rounded">In Progress</span>
+                                        </div>
+                                        <p class="text-xs text-muted-foreground">Strategic response to CompetitorA $10M funding</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-secondary/50 rounded-lg">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-sm font-medium">Resource Allocation</span>
+                                            <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded">Analysis Phase</span>
+                                        </div>
+                                        <p class="text-xs text-muted-foreground">2 engineers vs $50K marketing spend</p>
+                                    </div>
+                                    
+                                    <div class="p-3 bg-secondary/50 rounded-lg">
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-sm font-medium">Feature Prioritization</span>
+                                            <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded">Awaiting Input</span>
+                                        </div>
+                                        <p class="text-xs text-muted-foreground">Q3 roadmap optimization</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Strategic Intelligence -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">📈 Recent Strategic Intelligence</h3>
+                        
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3 p-4 bg-secondary/30 rounded-lg">
+                                <div class="w-2 h-2 bg-green-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-medium">Competitive Analysis Completed</span>
+                                        <span class="text-xs text-muted-foreground">2 hours ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground mb-2">Applied Competitive Response Framework → 3 strategic tasks created → 2 completed</p>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">ICE Framework</span>
+                                        <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded">89% Confidence</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3 p-4 bg-secondary/30 rounded-lg">
+                                <div class="w-2 h-2 bg-blue-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-medium">Resource Allocation Modeling</span>
+                                        <span class="text-xs text-muted-foreground">Yesterday</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground mb-2">Budget allocation analysis → RICE prioritization → Roadmap adjustment recommended</p>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">RICE Framework</span>
+                                        <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 rounded">Timeline: 3 weeks</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3 p-4 bg-secondary/30 rounded-lg">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full mt-2"></div>
+                                <div class="flex-1">
+                                    <div class="flex items-center justify-between mb-1">
+                                        <span class="text-sm font-medium">Market Expansion Analysis</span>
+                                        <span class="text-xs text-muted-foreground">3 days ago</span>
+                                    </div>
+                                    <p class="text-sm text-muted-foreground mb-2">European market analysis → Go/No-Go framework applied → Strategic decision executed</p>
+                                    <div class="flex items-center space-x-2">
+                                        <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">Market Entry</span>
+                                        <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded">Executed</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategic Alerts & Quick Actions -->
+                <div class="space-y-6">
+                    <!-- Strategic Alerts -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">🚨 Strategic Alerts</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <div class="w-2 h-2 bg-red-500 rounded-full strategic-pulse"></div>
+                                    <span class="text-sm font-medium text-red-700 dark:text-red-300">High Priority</span>
+                                </div>
+                                <p class="text-sm text-red-600 dark:text-red-400 mb-2">Competitor launched AI features similar to your roadmap</p>
+                                <button class="text-xs px-2 py-1 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 rounded hover:bg-red-200 dark:hover:bg-red-700">
+                                    Generate Response Plan
+                                </button>
+                            </div>
+                            
+                            <div class="p-3 bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-lg">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <div class="w-2 h-2 bg-orange-500 rounded-full"></div>
+                                    <span class="text-sm font-medium text-orange-700 dark:text-orange-300">Medium Priority</span>
+                                </div>
+                                <p class="text-sm text-orange-600 dark:text-orange-400 mb-2">Q3 budget review due next week - optimization recommended</p>
+                                <button class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 rounded hover:bg-orange-200 dark:hover:bg-orange-700">
+                                    Optimize Budget
+                                </button>
+                            </div>
+                            
+                            <div class="p-3 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg">
+                                <div class="flex items-center space-x-2 mb-1">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Strategic Opportunity</span>
+                                </div>
+                                <p class="text-sm text-blue-600 dark:text-blue-400 mb-2">User growth trending 15% above target - accelerate expansion</p>
+                                <button class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded hover:bg-blue-200 dark:hover:bg-blue-700">
+                                    Model Scenarios
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Strategic Actions -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">⚡ Quick Strategic Actions</h3>
+                        
+                        <div class="grid grid-cols-1 gap-3">
+                            <button class="flex items-center space-x-3 p-3 bg-primary/5 hover:bg-primary/10 border border-primary/20 rounded-lg transition-colors" onclick="switchTab('intelligence')">
+                                <span class="text-xl">💬</span>
+                                <div class="text-left">
+                                    <div class="text-sm font-medium">Ask Strategic Question</div>
+                                    <div class="text-xs text-muted-foreground">Get AI analysis with frameworks</div>
+                                </div>
+                            </button>
+                            
+                            <button class="flex items-center space-x-3 p-3 bg-secondary hover:bg-secondary/80 border rounded-lg transition-colors" onclick="switchTab('resources')">
+                                <span class="text-xl">📊</span>
+                                <div class="text-left">
+                                    <div class="text-sm font-medium">Run What-If Scenario</div>
+                                    <div class="text-xs text-muted-foreground">Model resource allocation impact</div>
+                                </div>
+                            </button>
+                            
+                            <button class="flex items-center space-x-3 p-3 bg-secondary hover:bg-secondary/80 border rounded-lg transition-colors" onclick="switchTab('roadmap')">
+                                <span class="text-xl">🎯</span>
+                                <div class="text-left">
+                                    <div class="text-sm font-medium">Optimize Roadmap</div>
+                                    <div class="text-xs text-muted-foreground">Priority matrix → timeline view</div>
+                                </div>
+                            </button>
+                            
+                            <button class="flex items-center space-x-3 p-3 bg-secondary hover:bg-secondary/80 border rounded-lg transition-colors" onclick="switchTab('competitive')">
+                                <span class="text-xl">🏢</span>
+                                <div class="text-left">
+                                    <div class="text-sm font-medium">Check Competitors</div>
+                                    <div class="text-xs text-muted-foreground">Latest competitive intelligence</div>
+                                </div>
+                            </button>
+                            
+                            <button class="flex items-center space-x-3 p-3 bg-secondary hover:bg-secondary/80 border rounded-lg transition-colors">
+                                <span class="text-xl">📈</span>
+                                <div class="text-left">
+                                    <div class="text-sm font-medium">View Analytics</div>
+                                    <div class="text-xs text-muted-foreground">Strategic performance insights</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Intelligence Engine -->
+        <div id="tab-intelligence" class="tab-content hidden">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Strategic AI Chat -->
+                <div class="lg:col-span-2">
+                    <div class="card rounded-xl p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-semibold">🧠 Strategic Intelligence Engine</h2>
+                            <div class="flex items-center space-x-2 text-sm">
+                                <span class="text-muted-foreground">Active Context:</span>
+                                <span class="px-2 py-1 bg-primary/10 text-primary rounded">TechCorp Series A</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Chat Messages -->
+                        <div class="h-96 overflow-y-auto border rounded-lg p-4 mb-4 bg-secondary/20" id="chatMessages">
+                            <div class="mb-4 p-3 bg-card rounded-lg border">
+                                <div class="flex items-start space-x-3">
+                                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                        <span class="text-primary-foreground text-xs font-bold">AI</span>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-sm font-medium mb-1">PM33 Strategic AI</div>
+                                        <p class="text-sm text-muted-foreground">Welcome to your Strategic Intelligence Engine! I have your TechCorp Series A context loaded. Ask me strategic questions about competitive positioning, resource allocation, roadmap prioritization, or market strategy.</p>
+                                        <div class="flex items-center space-x-2 mt-2">
+                                            <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">Context Loaded</span>
+                                            <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded">Ready for Analysis</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Strategic Input -->
+                        <div class="space-y-4">
+                            <div class="flex space-x-2">
+                                <input type="text" id="strategicInput" placeholder="Ask strategic questions like 'Our competitor raised $10M, strategic response?' or 'Budget for 2 engineers OR $50K marketing?'" 
+                                       class="flex-1 px-3 py-2 bg-background border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <button onclick="sendStrategicMessage()" class="px-6 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors">
+                                    Send
+                                </button>
+                            </div>
+                            
+                            <!-- Quick Strategic Questions -->
+                            <div class="flex flex-wrap gap-2">
+                                <button onclick="fillStrategicInput('Our main competitor just raised $10M Series A. Strategic response?')" 
+                                        class="text-xs px-3 py-1 bg-secondary hover:bg-secondary/80 rounded-full transition-colors">
+                                    Competitor funding response
+                                </button>
+                                <button onclick="fillStrategicInput('Budget for 2 engineers OR $50K marketing. Which drives growth?')" 
+                                        class="text-xs px-3 py-1 bg-secondary hover:bg-secondary/80 rounded-full transition-colors">
+                                    Resource allocation
+                                </button>
+                                <button onclick="fillStrategicInput('Should we expand to European markets this quarter?')" 
+                                        class="text-xs px-3 py-1 bg-secondary hover:bg-secondary/80 rounded-full transition-colors">
+                                    Market expansion
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Strategic Context & Framework Panel -->
+                <div class="space-y-6">
+                    <!-- Company Context -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">🏢 Company Context</h3>
+                        
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Stage:</span>
+                                <span class="font-medium">Series A</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Team Size:</span>
+                                <span class="font-medium">25 members</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Runway:</span>
+                                <span class="font-medium">8 months</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Market:</span>
+                                <span class="font-medium">SaaS B2B</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="text-sm font-medium mb-2">Key Competitors</h4>
+                            <div class="space-y-1 text-sm">
+                                <div class="text-muted-foreground">• CompetitorA (Series A, $10M)</div>
+                                <div class="text-muted-foreground">• CompetitorB (Seed, AI-focused)</div>
+                                <div class="text-muted-foreground">• CompetitorC (Series B, Enterprise)</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategic Frameworks -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">📚 Strategic Frameworks</h3>
+                        
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="p-2 text-xs bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                                ICE
+                            </button>
+                            <button class="p-2 text-xs bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                RICE
+                            </button>
+                            <button class="p-2 text-xs bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                OKR
+                            </button>
+                            <button class="p-2 text-xs bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                Blue Ocean
+                            </button>
+                            <button class="p-2 text-xs bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                JTBD
+                            </button>
+                            <button class="p-2 text-xs bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                Porter's 5
+                            </button>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-t">
+                            <h4 class="text-sm font-medium mb-2">Recently Applied</h4>
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-muted-foreground">ICE Prioritization</span>
+                                    <span class="text-primary">89% confidence</span>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-muted-foreground">Competitive Response</span>
+                                    <span class="text-primary">92% confidence</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Strategic Analysis History -->
+                    <div class="card rounded-xl p-6">
+                        <h3 class="text-lg font-medium mb-4">📊 Recent Analyses</h3>
+                        
+                        <div class="space-y-3">
+                            <div class="p-3 bg-secondary/30 rounded-lg">
+                                <div class="text-sm font-medium mb-1">Competitive Analysis</div>
+                                <div class="text-xs text-muted-foreground mb-2">CompetitorA funding response</div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">ICE Framework</span>
+                                    <span class="text-xs text-muted-foreground">2h ago</span>
+                                </div>
+                            </div>
+                            
+                            <div class="p-3 bg-secondary/30 rounded-lg">
+                                <div class="text-sm font-medium mb-1">Resource Optimization</div>
+                                <div class="text-xs text-muted-foreground mb-2">Engineering vs Marketing spend</div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">RICE Framework</span>
+                                    <span class="text-xs text-muted-foreground">1d ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Strategic Roadmap Intelligence -->
+        <div id="tab-roadmap" class="tab-content hidden">
+            <div class="mb-6">
+                <h2 class="text-2xl font-semibold mb-2">🗺️ Strategic Roadmap Intelligence</h2>
+                <p class="text-muted-foreground">Vertical Priority Matrix → Horizontal Timeline with Cost Intelligence</p>
+            </div>
+            
+            <div class="flex space-x-4 mb-6">
+                <button id="priorityView" class="px-4 py-2 bg-primary text-primary-foreground rounded-lg">Priority Matrix</button>
+                <button id="timelineView" class="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-lg">Timeline View</button>
+                <button class="px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-lg">What-If Scenarios</button>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Vertical Priority Matrix -->
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-lg font-medium mb-4">📊 Vertical Priority Matrix</h3>
+                    
+                    <div class="space-y-4" id="priorityMatrix">
+                        <div class="priority-item p-4 border-2 border-red-200 dark:border-red-800 bg-red-50 dark:bg-red-900/10 rounded-lg" data-priority="critical">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-red-700 dark:text-red-300">🚀 Critical Priority</span>
+                                <span class="text-xs px-2 py-1 bg-red-100 dark:bg-red-800 text-red-700 dark:text-red-300 rounded">ICE: 9.2</span>
+                            </div>
+                            <h4 class="font-medium mb-1">AI Chat Enhancement</h4>
+                            <p class="text-sm text-muted-foreground mb-2">Advanced strategic framework integration</p>
+                            <div class="flex items-center space-x-4 text-xs">
+                                <span class="text-muted-foreground">Resource: 6 eng weeks</span>
+                                <span class="text-muted-foreground">Impact: High</span>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-item p-4 border-2 border-orange-200 dark:border-orange-800 bg-orange-50 dark:bg-orange-900/10 rounded-lg" data-priority="high">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-orange-700 dark:text-orange-300">📈 High Priority</span>
+                                <span class="text-xs px-2 py-1 bg-orange-100 dark:bg-orange-800 text-orange-700 dark:text-orange-300 rounded">ICE: 7.8</span>
+                            </div>
+                            <h4 class="font-medium mb-1">Mobile App MVP</h4>
+                            <p class="text-sm text-muted-foreground mb-2">Strategic intelligence on mobile</p>
+                            <div class="flex items-center space-x-4 text-xs">
+                                <span class="text-muted-foreground">Resource: 8 eng weeks</span>
+                                <span class="text-muted-foreground">Impact: Medium</span>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-item p-4 border-2 border-blue-200 dark:border-blue-800 bg-blue-50 dark:bg-blue-900/10 rounded-lg" data-priority="medium">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-blue-700 dark:text-blue-300">💡 Medium Priority</span>
+                                <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-800 text-blue-700 dark:text-blue-300 rounded">ICE: 6.1</span>
+                            </div>
+                            <h4 class="font-medium mb-1">Advanced Analytics</h4>
+                            <p class="text-sm text-muted-foreground mb-2">Strategic performance insights</p>
+                            <div class="flex items-center space-x-4 text-xs">
+                                <span class="text-muted-foreground">Resource: 4 eng weeks</span>
+                                <span class="text-muted-foreground">Impact: Medium</span>
+                            </div>
+                        </div>
+                        
+                        <div class="priority-item p-4 border-2 border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900/10 rounded-lg" data-priority="low">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-semibold text-gray-700 dark:text-gray-300">🔧 Low Priority</span>
+                                <span class="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded">ICE: 4.3</span>
+                            </div>
+                            <h4 class="font-medium mb-1">Team Collaboration</h4>
+                            <p class="text-sm text-muted-foreground mb-2">Multi-user strategic sessions</p>
+                            <div class="flex items-center space-x-4 text-xs">
+                                <span class="text-muted-foreground">Resource: 5 eng weeks</span>
+                                <span class="text-muted-foreground">Impact: Low</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-4 border-t">
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary/20 transition-colors">
+                                🎯 Optimize Priority
+                            </button>
+                            <button class="flex-1 px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                📊 What-If Analysis
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Horizontal Timeline Projection -->
+                <div class="card rounded-xl p-6">
+                    <h3 class="text-lg font-medium mb-4">📅 Horizontal Timeline Projection</h3>
+                    
+                    <!-- Timeline Header -->
+                    <div class="grid grid-cols-4 gap-4 mb-6 text-center">
+                        <div class="text-sm font-medium">Q1 2025</div>
+                        <div class="text-sm font-medium">Q2 2025</div>
+                        <div class="text-sm font-medium">Q3 2025</div>
+                        <div class="text-sm font-medium">Q4 2025</div>
+                    </div>
+                    
+                    <!-- Timeline Bars -->
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-red-700 dark:text-red-300">AI Chat Enhancement</span>
+                                <span class="text-xs text-muted-foreground">6 weeks</span>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="h-6 bg-red-500 rounded timeline-bar"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-orange-700 dark:text-orange-300">Mobile App MVP</span>
+                                <span class="text-xs text-muted-foreground">8 weeks</span>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-orange-500 rounded timeline-bar"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-blue-700 dark:text-blue-300">Advanced Analytics</span>
+                                <span class="text-xs text-muted-foreground">4 weeks</span>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-blue-500 rounded timeline-bar"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-700 dark:text-gray-300">Team Collaboration</span>
+                                <span class="text-xs text-muted-foreground">5 weeks</span>
+                            </div>
+                            <div class="grid grid-cols-4 gap-4">
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-secondary rounded"></div>
+                                <div class="h-6 bg-gray-500 rounded timeline-bar"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Cost Projections -->
+                    <div class="mt-6 pt-4 border-t">
+                        <h4 class="text-sm font-medium mb-3">💰 Cost Projections</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Q1 2025:</span>
+                                <div class="text-right">
+                                    <span class="font-medium">$450K</span>
+                                    <span class="text-xs text-green-600 dark:text-green-400 ml-2">(85% confidence)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Q2 2025:</span>
+                                <div class="text-right">
+                                    <span class="font-medium">$320K</span>
+                                    <span class="text-xs text-green-600 dark:text-green-400 ml-2">(78% confidence)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Q3 2025:</span>
+                                <div class="text-right">
+                                    <span class="font-medium">$180K</span>
+                                    <span class="text-xs text-orange-600 dark:text-orange-400 ml-2">(65% confidence)</span>
+                                </div>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-muted-foreground">Q4 2025:</span>
+                                <div class="text-right">
+                                    <span class="font-medium">$220K</span>
+                                    <span class="text-xs text-orange-600 dark:text-orange-400 ml-2">(52% confidence)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 pt-4 border-t">
+                        <div class="flex space-x-2">
+                            <button class="flex-1 px-4 py-2 bg-primary/10 text-primary border border-primary/20 rounded-lg hover:bg-primary/20 transition-colors">
+                                💰 Cost Analysis
+                            </button>
+                            <button class="flex-1 px-4 py-2 bg-secondary hover:bg-secondary/80 rounded-lg transition-colors">
+                                📈 ROI Projections
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other tabs would be implemented similarly -->
+        <div id="tab-competitive" class="tab-content hidden">
+            <div class="text-center py-12">
+                <h2 class="text-xl font-semibold mb-2">🏢 Competitive Intelligence</h2>
+                <p class="text-muted-foreground">Coming soon - Competitive monitoring and strategic response planning</p>
+            </div>
+        </div>
+
+        <div id="tab-resources" class="tab-content hidden">
+            <div class="text-center py-12">
+                <h2 class="text-xl font-semibold mb-2">🔄 Resource Optimizer</h2>
+                <p class="text-muted-foreground">Coming soon - Resource allocation optimization and what-if scenarios</p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Tab Management
+        function switchTab(tabName) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.add('hidden');
+            });
+            
+            // Remove active class from all nav tabs
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active', 'border-primary', 'text-primary');
+                tab.classList.add('border-transparent');
+            });
+            
+            // Show selected tab content
+            document.getElementById(`tab-${tabName}`).classList.remove('hidden');
+            
+            // Add active class to selected nav tab
+            const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+            activeTab.classList.add('active', 'border-primary', 'text-primary');
+            activeTab.classList.remove('border-transparent');
+        }
+
+        // Navigation event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const tabName = this.dataset.tab;
+                    switchTab(tabName);
+                });
+            });
+        });
+
+        // Strategic AI Chat functionality
+        async function sendStrategicMessage() {
+            const input = document.getElementById('strategicInput');
+            const messages = document.getElementById('chatMessages');
+            const message = input.value.trim();
+            
+            if (!message) return;
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'mb-4 p-3 bg-primary/10 rounded-lg border border-primary/20';
+            userMsg.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center">
+                        <span class="text-xs font-bold">You</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-medium mb-1">Strategic Question</div>
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            messages.appendChild(userMsg);
+
+            // Clear input
+            input.value = '';
+
+            // Add loading message
+            const loadingMsg = document.createElement('div');
+            loadingMsg.className = 'mb-4 p-3 bg-card rounded-lg border';
+            loadingMsg.innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                        <span class="text-primary-foreground text-xs font-bold">AI</span>
+                    </div>
+                    <div class="flex-1">
+                        <div class="text-sm font-medium mb-1">PM33 Strategic AI</div>
+                        <p class="text-sm text-muted-foreground">🎯 Analyzing with proven PM frameworks...</p>
+                    </div>
+                </div>
+            `;
+            messages.appendChild(loadingMsg);
+
+            // Scroll to bottom
+            messages.scrollTop = messages.scrollHeight;
+
+            try {
+                const response = await fetch('/api/mock-strategic-response', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+
+                const data = await response.json();
+                
+                // Remove loading message
+                messages.removeChild(loadingMsg);
+
+                // Add AI response
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'mb-4 p-3 bg-card rounded-lg border';
+                
+                let framework = 'Strategic Analysis';
+                const frameworkMatch = data.response.match(/\*\*RECOMMENDED FRAMEWORK:\*\*\s*([^*\n]+)/);
+                if (frameworkMatch) {
+                    framework = frameworkMatch[1].trim();
+                }
+
+                aiMsg.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-primary-foreground text-xs font-bold">AI</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-sm font-medium mb-1">PM33 Strategic AI</div>
+                            <div class="text-sm whitespace-pre-wrap mb-3">${data.response}</div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">Framework: ${framework}</span>
+                                <span class="text-xs px-2 py-1 bg-green-100 dark:bg-green-900/20 text-green-600 dark:text-green-400 rounded">Analysis Complete</span>
+                            </div>
+                            <div class="flex space-x-2 mt-3">
+                                <button class="text-xs px-3 py-1 bg-primary text-primary-foreground rounded hover:bg-primary/90 transition-colors" 
+                                        onclick="switchTab('roadmap')">
+                                    🎯 Add to Roadmap
+                                </button>
+                                <button class="text-xs px-3 py-1 bg-secondary hover:bg-secondary/80 rounded transition-colors"
+                                        onclick="switchTab('resources')">
+                                    📊 Run Scenario
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messages.appendChild(aiMsg);
+
+            } catch (error) {
+                messages.removeChild(loadingMsg);
+                
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'mb-4 p-3 bg-card rounded-lg border';
+                aiMsg.innerHTML = `
+                    <div class="flex items-start space-x-3">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="text-primary-foreground text-xs font-bold">AI</span>
+                        </div>
+                        <div class="flex-1">
+                            <div class="text-sm font-medium mb-1">PM33 Strategic AI</div>
+                            <p class="text-sm text-muted-foreground">I understand your strategic question about "${message}". In the live system, I would analyze this using proven PM frameworks and generate specific actionable recommendations with confidence scores.</p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <span class="text-xs px-2 py-1 bg-primary/10 text-primary rounded">Strategic Analysis Ready</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                messages.appendChild(aiMsg);
+            }
+
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function fillStrategicInput(question) {
+            document.getElementById('strategicInput').value = question;
+        }
+
+        // Handle Enter key in strategic input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('strategicInput').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendStrategicMessage();
+                }
+            });
+        });
+
+        // Strategic Health Score Animation
+        let currentHealth = 87;
+        function updateHealthScore() {
+            const scoreElement = document.getElementById('healthScore');
+            currentHealth = Math.min(currentHealth + Math.floor(Math.random() * 3), 100);
+            scoreElement.textContent = `${currentHealth}/100`;
+            
+            const healthBar = document.querySelector('.strategic-health-bar');
+            healthBar.style.width = `${currentHealth}%`;
+        }
+
+        // Simulate health score updates
+        setInterval(updateHealthScore, 30000);
+    </script>
+</body>
+</html>
