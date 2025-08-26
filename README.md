@@ -79,15 +79,28 @@ PM33: PMO Transformation Platform
 
 ---
 
-## 🚀 **Quick Start: Strategic Intelligence**
+## 🚀 **Quick Start: Fully Integrated PM33 Platform**
 
-### **Strategic Intelligence Demo**
+### **Complete Backend-Frontend Integration**
 ```bash
-# Launch PM33 Strategic Intelligence Platform
+# Launch PM33 Complete Platform (Backend + Frontend)
 cd pm33-claude-execution
-python PM33_COMPLETE_CONTEXT_LOADER.py  # Load full strategic context
-python pm33_multi_engine_demo.py        # Start strategic AI engine
+
+# Start Multi-AI Backend Server
+python pm33_multi_engine_demo.py        # Starts on http://localhost:8000
+
+# Start Next.js Frontend (separate terminal)
+cd app/frontend
+npm run dev                              # Starts on http://localhost:3003
+
+# ✅ Complete Integration Ready: http://localhost:3003/dashboard
 ```
+
+### **✅ LIVE Features Available:**
+- **Strategic Chat**: Real AI analysis with multi-engine selection
+- **Workflow Generation**: Clickable scenarios create executable tasks
+- **AI Status Monitoring**: Live engine health with 30-second updates
+- **Professional UX**: Loading states, error handling, responsive design
 
 ### **Strategic Question Examples**
 - *"Our competitor raised $50M and launched competing feature. Strategic response?"*

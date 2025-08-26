@@ -3,7 +3,7 @@
 ## 🎯 **STRATEGIC VISION**
 Transform PM33 from a product into a **scalable PMO transformation platform** where each client gets their own specialized agent team optimized for their specific context, tools, and objectives.
 
-**Timeline:** Post-Day 3 launch implementation  
+**Scope:** THIS DOCUMENT APPLIES TO THE CORE APP ONLY, NOT THE MARKETING WEBSITE 
 **Priority:** Capture vision now, prototype after core PM33 validation
 
 ## 🏗️ **RECOMMENDED ARCHITECTURE: Hub & Spoke**

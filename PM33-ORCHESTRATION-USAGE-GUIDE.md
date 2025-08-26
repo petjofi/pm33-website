@@ -4,6 +4,8 @@
 
 The PM33 Orchestration System is a sophisticated multi-agent AI coordination platform that manages PM33's strategic, technical, UX, and GTM operations with autonomous decision-making and human escalation workflows.
 
+**Scope:** THIS DOCUMENT APPLIES TO THE CORE APP ONLY, NOT THE MARKETING WEBSITE 
+
 **Test Results: 86.7% Pass Rate (13/15 tests)** ✅
 **Status: Production Ready for PM33 Operations**
 
