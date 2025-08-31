@@ -13,15 +13,44 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "app/frontend/docs/shared/PM33_COMPLETE_UI_SYSTEM.md",
+                "file": "FUTURE-REFERENCE-CLIENT-AGENTS.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "PM33_COMPLETE_UI_SYSTEM"
+              "title": "FUTURE-REFERENCE-CLIENT-AGENTS"
+            }
+          },
+          {
+            "id": "4d4194a4f8da0ccd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PM33 100k MRR Plan.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PM33 100k MRR Plan"
+            }
+          },
+          {
+            "id": "c1812b53f8e1608f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PM33 100k MRR Plan.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "PM33 100k MRR Plan"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -169,53 +198,53 @@
       "bases:Create new base": false
     }
   },
-  "active": "4c302cb540c4cd84",
+  "active": "c1812b53f8e1608f",
   "lastOpenFiles": [
-    "app/frontend/tests/critical-path.spec.ts",
-    "app/frontend/lighthouse-ci.json",
-    "app/frontend/test-results/premium-dashboard-complian-c7c49-egic-tools-navigation-works-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-c7c49-egic-tools-navigation-works-chromium/video.webm",
-    "app/frontend/test-results/premium-dashboard-complian-c7c49-egic-tools-navigation-works-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-c7c49-egic-tools-navigation-works-chromium",
-    "app/frontend/test-results/premium-dashboard-complian-fd85c-ics-are-displayed-correctly-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-fd85c-ics-are-displayed-correctly-chromium/video.webm",
-    "app/frontend/test-results/premium-dashboard-complian-fd85c-ics-are-displayed-correctly-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-fd85c-ics-are-displayed-correctly-chromium",
-    "app/frontend/test-results/premium-dashboard-complian-fb4e2-hows-strategic-intelligence-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-fb4e2-hows-strategic-intelligence-chromium/video.webm",
-    "app/frontend/PREMIUM_TESTING_FRAMEWORK.md",
-    "app/frontend/test-results/premium-dashboard-complian-fb4e2-hows-strategic-intelligence-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-fb4e2-hows-strategic-intelligence-chromium",
-    "app/frontend/test-results/premium-dashboard-complian-99de5-ntext-is-properly-displayed-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-99de5-ntext-is-properly-displayed-chromium/video.webm",
-    "app/frontend/test-results/premium-dashboard-complian-99de5-ntext-is-properly-displayed-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-99de5-ntext-is-properly-displayed-chromium",
-    "app/frontend/test-results/premium-dashboard-complian-70b4d--status-updates-dynamically-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-70b4d--status-updates-dynamically-chromium/video.webm",
-    "app/frontend/test-results/premium-dashboard-complian-70b4d--status-updates-dynamically-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-82f76-ity-matches-premium-mockups-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-82f76-ity-matches-premium-mockups-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-51a46-aintains-premium-experience-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-51a46-aintains-premium-experience-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-14030-nce-meets-premium-standards-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-14030-nce-meets-premium-standards-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-complian-55202-llows-premium-design-system-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-55202-llows-premium-design-system-chromium/test-failed-1.png",
-    "app/frontend/test-results/premium-dashboard-full.png",
-    "app/frontend/test-results/premium-dashboard-complian-1ca93-n-maintains-premium-quality-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-1a1c4-lements-are-premium-quality-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-ff88d-s-are-implemented-correctly-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-1dfa6-s-are-prominently-displayed-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-4ac96-s-have-premium-interactions-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-ba9d1-e-meets-500-month-standards-chromium/error-context.md",
-    "app/frontend/test-results/premium-dashboard-complian-9fb90-s-show-premium-intelligence-chromium/error-context.md",
+    "MCP_DESIGN_EXPERT_API.md",
+    "scripts/pm33-design-expert-mcp.js",
+    "scripts/enforcer",
+    "scripts/design-dashboard.html",
+    "scripts/design-enforcer-tracker.js",
+    "scripts/validate-colors.js",
+    "scripts/validate-layouts.js",
+    "scripts/validate-spacing.js",
+    "scripts/validate-typography.js",
+    "app/frontend/SUCCESS-WHITE-BACKGROUND.png",
+    "DESIGN_APPROVAL_SYSTEM.md",
+    "DESIGN_ENFORCEMENT_README.md",
+    "tests/pm33-design-compliance.visual.spec.ts",
+    "app/frontend/VERIFICATION-SCREENSHOT.png",
+    "playwright.config.ts",
+    "app/frontend/PROOF-VISIBLE-TEXT.md",
+    "app/frontend/FINAL-PROOF-SUCCESS.md",
+    "screenshots/Screenshot 2025-08-28 at 6.34.40 AM.png",
+    "screenshots/Screenshot 2025-08-28 at 6.34.24 AM.png",
+    "screenshots/Screenshot 2025-08-28 at 6.34.09 AM.png",
+    "app/frontend/page-resources-validation.png",
+    "app/frontend/page-contact-validation.png",
+    "app/frontend/page-about-validation.png",
+    "app/frontend/page-pricing-validation.png",
+    "app/frontend/homepage-cta-section.png",
+    "PM33_DESIGN_VIOLATIONS_REPORT.md",
+    "PM33_DESIGN_CONTRACT.md",
+    "app/frontend/test-results/homepage-PM33-Homepage---C-a928c-uld-not-have-console-errors-chromium/error-context.md",
     "app/frontend/test-results/homepage-PM33-Homepage---C-86f25-er-accessibility-attributes-chromium/error-context.md",
     "app/frontend/test-results/homepage-PM33-Homepage---C-698e9-esponsive-on-mobile-devices-chromium/error-context.md",
-    "app/frontend/test-results/homepage-PM33-Homepage---C-a928c-uld-not-have-console-errors-chromium/error-context.md",
     "app/frontend/test-results/homepage-PM33-Homepage---C-05ad9-ve-professional-CTA-section-chromium/error-context.md",
-    "app/frontend/test-results/homepage-PM33-Homepage---C-09a7a-stimonials-and-social-proof-chromium/error-context.md",
     "app/frontend/test-results/homepage-PM33-Homepage---C-509a3-n-comparison-professionally-chromium/error-context.md",
+    "app/frontend/test-results/homepage-PM33-Homepage---C-09a7a-stimonials-and-social-proof-chromium/error-context.md",
+    "app/frontend/test-results/homepage-PM33-Homepage---C-17148--navigation-cards-correctly-chromium/error-context.md",
     "app/frontend/test-results/homepage-PM33-Homepage---C-ca3e3-on-with-professional-layout-chromium/error-context.md",
-    "app/frontend/test-results/homepage-PM33-Homepage---C-9371f--correct-title-and-branding-chromium/error-context.md"
+    "app/frontend/test-results/homepage-PM33-Homepage---C-9b8e7-ve-working-navigation-links-chromium/error-context.md",
+    "app/frontend/test-results/homepage-PM33-Homepage---C-9371f--correct-title-and-branding-chromium/error-context.md",
+    "app/frontend/playwright-report/data/157126fb83389a8743f4a43f916cd43b90a8a6d4.md",
+    "app/frontend/playwright-report/data/a61fad10156175dafe5287872c3f6c7a8816cd2e.md",
+    "app/frontend/node_modules/@mantine/modals/README.md",
+    "app/frontend/node_modules/@mantine/form/README.md",
+    "app/frontend/docs/TEMPLATE_USAGE.md",
+    "app/frontend/test-results/contrast-compliance-Contra-d247f-tes---dark-theme-compliance-chromium/error-context.md",
+    "app/frontend/test-results/contrast-compliance-Contra-5544c-nts---dark-theme-compliance-chromium/error-context.md",
+    "app/frontend/test-results/contrast-compliance-Contra-f3911-ion---dark-theme-compliance-chromium/error-context.md",
+    "app/frontend/test-results/contrast-compliance-Contra-6646e-bar---dark-theme-compliance-chromium/error-context.md"
   ]
 }

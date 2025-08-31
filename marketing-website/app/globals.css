@@ -1,0 +1,112 @@
+/* PM33 Marketing Website Global Styles */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--marketing-bg-primary);
+  color: var(--marketing-text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Marketing Context Styles */
+.marketing-context {
+  min-height: 100vh;
+  background: var(--marketing-bg-primary);
+  color: var(--marketing-text-primary);
+  transition: all 0.3s ease;
+}
+
+/* Glass Morphism Effects */
+.marketing-glass-card {
+  background: var(--marketing-glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--marketing-glass-border);
+  border-radius: 16px;
+  box-shadow: var(--marketing-glass-shadow);
+  transition: all 0.3s ease;
+}
+
+.marketing-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.5);
+}
+
+/* Typography Classes */
+.marketing-text-primary {
+  color: var(--marketing-text-primary);
+}
+
+.marketing-text-secondary {
+  color: var(--marketing-text-secondary);
+}
+
+.marketing-text-inverse {
+  color: var(--marketing-text-inverse);
+}
+
+.marketing-gradient-text {
+  background: var(--marketing-gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .marketing-glass-card {
+    border-radius: 12px;
+  }
+}
+
+/* Link Styles */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--marketing-primary);
+}
+
+/* Button Animations */
+button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--marketing-bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--marketing-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--marketing-secondary);
+}

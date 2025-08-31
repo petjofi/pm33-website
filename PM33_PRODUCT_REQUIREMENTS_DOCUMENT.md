@@ -445,58 +445,81 @@ Unified Strategic Dashboard with Cross-Platform Insights
 
 ### **PM33 Pricing Strategy**
 
-**Professional: $49/user/month**
+**Starter: $29/user/month**
 - Core Strategic Intelligence Engine 
 - Basic integrations (Jira + 1 analytics tool)
 - Standard strategic frameworks (ICE/RICE)
 - Email support
-- **Target**: 340 customers = $16.7K MRR
+- **Target**: 2,505 customers = $72,645 MRR (70% of revenue)
 
-**Enterprise: $99/user/month** ⭐ **Primary Revenue Driver**
-- Advanced AI strategic advisor with all workflows
-- Unlimited integrations (PM tools + analytics + communication)
+**Team: $79/user/month**
+- Advanced AI strategic advisor with enhanced workflows
+- Multiple integrations (PM tools + analytics)
 - Multi-framework analysis + competitive intelligence
 - Team collaboration features + priority support
-- **Target**: 675 customers = $66.8K MRR
+- **Target**: 1,043 customers = $82,397 MRR (20% of revenue)
 
-**Strategic: $199/user/month** 
-- Custom AI model training on company data
+**Scale: $199/user/month**
 - Advanced predictive analytics and what-if scenarios
-- Dedicated customer success manager
-- White-glove onboarding + API access
-- **Target**: 85 customers = $16.9K MRR
+- Unlimited integrations (PM tools + analytics + communication)
+- Resource allocation optimizer with cost modeling
+- Priority support + strategic success manager
+- **Target**: 418 customers = $83,182 MRR (8% of revenue)
 
-**Total Revenue Target**: $100.4K MRR
+**Enterprise: $599/user/month** 
+- Custom AI model training on company data
+- White-glove onboarding + dedicated CSM
+- API access + custom integrations
+- Strategic advisory services
+- **Target**: 209 customers = $125,191 MRR (2% of revenue)
+
+**Net Revenue Target**: $103,565 MRR (after 5% churn impact)
+**Blended ARPU**: ~$65/month per customer
 
 ### **Revenue Path Analysis**
-- **Path A**: Focus on Enterprise tier (675 × $99 = $66.8K + mixed tier growth)
-- **Customer Acquisition**: <$500 CAC through automation and organic growth
-- **Churn Target**: <5% monthly (high switching costs due to AI context learning)
-- **Expansion**: Teams grow naturally, driving account expansion
+- **Primary Path**: Balanced tier distribution with Starter-heavy volume (60% Starter, 25% Team, 10% Scale, 5% Enterprise)
+- **Customer Acquisition**: 5,200 gross acquisitions needed for 4,175 net paying customers
+- **Churn Model**: 5% blended monthly churn with detailed segment breakdown:
+  - Starter: 6% monthly churn, 17-month avg lifetime
+  - Team: 4% monthly churn, 25-month avg lifetime  
+  - Scale: 2.5% monthly churn, 40-month avg lifetime
+  - Enterprise: 1.5% monthly churn, 67-month avg lifetime
+- **CAC Budget**: $183,500 total with $35 average CAC ($20-50 range by acquisition stage)
+- **Beta Strategy**: First 100 users FREE (weeks 1-2), 60% convert to paid in week 3
 
 ---
 
 ## 🎯 **Go-to-Market Strategy**
 
-### **Phase 1: Stealth Beta (Weeks 1-4)**
-- **Target**: 50 early adopter customers from personal network
-- **Focus**: Product-market fit validation and feature refinement
-- **Success Metrics**: 80% strategic question satisfaction rate, 60% daily usage
+### **Phase 1: Beta Foundation (Weeks 1-2)**
+- **Week 1**: 25 private beta users (FREE), zero revenue - product validation focus
+- **Week 2**: 100 total beta users (FREE), zero revenue - PMF confirmation
+- **Success Gate**: 50% of beta users active daily
 
-### **Phase 2: Community Launch (Weeks 5-8)**
-- **Target**: 200 customers through PM community engagement
-- **Channels**: Reddit, ProductHunt, LinkedIn, Slack communities
-- **Success Metrics**: 15% trial-to-paid conversion, >4.2/5 quality rating
+### **Phase 2: Revenue Launch (Weeks 3-4)**  
+- **Week 3**: 150 paying customers from 60% beta conversion + 90 new, $4,350 MRR
+- **Week 4**: 400 total paying customers, $11,600 MRR
+- **Success Gate**: <10% week 1 churn rate
 
-### **Phase 3: Content Marketing (Weeks 9-12)** 
-- **Target**: 500 customers through thought leadership
-- **Strategy**: Strategic PM frameworks, case studies, industry insights
-- **Success Metrics**: 25% viral coefficient, organic word-of-mouth growth
+### **Phase 3: Growth Validation (Weeks 5-8)**
+- **Week 5**: 700 paying customers, $20K MRR  
+- **Week 6**: 1,050 paying customers, $30K MRR
+- **Week 8**: 1,900 paying customers, $52K MRR
+- **Success Gate**: CAC <$40, monthly churn <5%
 
-### **Phase 4: Enterprise Expansion (Weeks 13-20)**
-- **Target**: 1,000+ customers through Enterprise tier focus
-- **Strategy**: Account-based marketing, partner channels
-- **Success Metrics**: $100K MRR achievement, >60% Enterprise tier adoption
+### **Phase 4: Scale Achievement (Weeks 9-12)**
+- **Week 10**: 2,650 paying customers, $72K MRR
+- **Week 12**: 3,320 paying customers, $90K MRR  
+- **Success Gate**: LTV/CAC ratio >3.0
+
+### **Phase 5: Target Achievement (Weeks 13-15)**
+- **Week 15**: 4,175 paying customers, $103K MRR ✅ TARGET HIT
+- **Success Gate**: Net revenue retention >100%
+
+### **Phase 6: Sustain & Grow (Weeks 16-20)**
+- **Week 20**: 4,840 paying customers, $118K MRR
+- **Focus**: Reduce churn, increase expansion revenue
+- **Success Gate**: Clear path to $200K MRR by Q1 2026
 
 ### **Customer Acquisition Channels**
 1. **Direct Outreach**: Personal network, LinkedIn outreach (Weeks 1-2)
@@ -615,11 +638,11 @@ Unified Strategic Dashboard with Cross-Platform Insights
 - **Strategic Impact Score**: Measurable business outcome improvements
 
 ### **Business Metrics**
-- **Monthly Recurring Revenue**: $100K target by Week 20
-- **Customer Acquisition Cost**: <$500 (sustainable unit economics)
-- **Monthly Churn Rate**: <5% (high switching costs due to AI context)
-- **Net Revenue Retention**: >110% (team growth expansion)
-- **Average Revenue Per User**: $75 (Professional/Enterprise mix)
+- **Monthly Recurring Revenue**: $103,565 target by Week 15 (not Week 20)
+- **Customer Acquisition Cost**: $35 average ($20-50 range, total budget $183.5K)
+- **Monthly Churn Rate**: 5% blended (varies by tier: 6% Starter to 1.5% Enterprise)
+- **Net Revenue Retention**: >100% with account expansion
+- **Average Revenue Per User**: $65 blended (realistic tier distribution)
 
 ### **Market Metrics**
 - **Market Share**: 0.3% of serviceable market by EOY  
@@ -789,20 +812,21 @@ Production Deployment (Industry-Leading Quality + Continuous Monitoring)
 5. **Implement Core Strategic Intelligence Engine** with Jira integration
 
 ### **Weekly Development Priorities**
-- **Week 1-2**: Strategic Intelligence Engine MVP with Jira integration
-- **Week 3-4**: Beta user feedback integration and feature refinement  
-- **Week 5-6**: Resource Allocation Optimizer and enhanced integrations
-- **Week 7-8**: Competitive Intelligence Engine and analytics integration
-- **Week 9-12**: Strategic Roadmap Intelligence with timeline projections
-- **Week 13-16**: Strategic Execution Intelligence and enterprise features
-- **Week 17-20**: Scale optimization and $100K MRR achievement
+- **Week 1-2**: Private beta launch (25→100 FREE users), product validation, PMF confirmation
+- **Week 3-4**: Public launch with first revenue ($4.3K→$11.6K MRR), beta conversion
+- **Week 5-8**: Growth validation phase ($20K→$52K MRR), CAC optimization  
+- **Week 9-12**: Scale achievement phase ($72K→$90K MRR), LTV/CAC >3.0
+- **Week 13-15**: Target achievement ($103K MRR by Week 15), net retention >100%
+- **Week 16-20**: Sustain & grow ($118K MRR), path to $200K MRR clear
 
 ### **Critical Success Factors**
-1. **Strategic Intelligence Quality**: Must deliver superior insights vs manual analysis
-2. **Execution Integration**: Seamless flow from strategic decision to Jira tasks  
-3. **Company Context Learning**: AI must become smarter with usage
-4. **Customer Success**: High satisfaction rates drive organic growth
-5. **Market Timing**: Capitalize on 2024 trend toward strategic PM focus
+1. **Beta Validation Success**: 50% daily active usage in first 2 weeks (FREE period)
+2. **Beta-to-Paid Conversion**: 60% of beta users convert to paying by Week 3
+3. **Early Churn Control**: <10% Week 1 churn rate post-conversion
+4. **CAC Efficiency**: Stay under $40 CAC through Week 8, average $35 overall
+5. **Tier Distribution**: Achieve 60% Starter, 25% Team, 10% Scale, 5% Enterprise mix
+6. **Milestone Gates**: Hit Week 8 ($52K), Week 12 ($90K), Week 15 ($103K) targets
+7. **5% Churn Management**: Maintain blended 5% monthly churn across all tiers
 
 ---
 

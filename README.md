@@ -41,6 +41,26 @@ PM33 transforms individual Product Managers into fully functional PMOs through a
 
 ---
 
+## 📚 **Core App Documentation**
+**Location**: `app/frontend/docs/` - Essential for development consistency and quality
+
+### **Why This Documentation Matters**
+Our PM33 Core App uses a sophisticated glass morphism design system with theme-aware components. This documentation ensures all development work maintains professional enterprise-grade standards and prevents component duplication.
+
+### **Key Documentation Files**
+1. **`COMPONENT_SYSTEM.md`** - Complete component library with copy-paste code blocks
+2. **`DESIGN_SYSTEM.md`** - Glass morphism recipes, colors, typography, animations  
+3. **`AGENT_HANDOFF.md`** - Current system state, architecture, development templates
+4. **`PM33_MULTI_TENANCY_ARCHITECTURE.md`** - Enterprise B2B SaaS multi-tenancy implementation
+
+### **When to Use**
+- **Before creating UI**: Check if PM33Card variants meet your needs
+- **Before styling**: Use glass morphism recipes for consistency
+- **During handoffs**: Complete system state and technical decisions
+- **For implementation**: Copy-paste ready code with proper theme support
+
+---
+
 ## 🎯 **Value Proposition**
 
 | Traditional Approach | PM33 Ultimate Product Agent |
@@ -157,6 +177,7 @@ npm run dev                              # Starts on http://localhost:3003
 - [`PM33_EXPANDED_WORKFLOW_ANALYSIS.md`](PM33_EXPANDED_WORKFLOW_ANALYSIS.md) - Complete 12-workflow strategic system
 
 ### **Technical Implementation**
+- [`PM33_MULTI_TENANCY_ARCHITECTURE.md`](PM33_MULTI_TENANCY_ARCHITECTURE.md) - ⭐ Enterprise B2B SaaS multi-tenancy implementation
 - [`PM33_TECHNOLOGY_RECOMMENDATIONS.md`](PM33_TECHNOLOGY_RECOMMENDATIONS.md) - Tech stack: Mantine, FastAPI, multi-AI
 - [`PM33_DATA_REQUIREMENTS_ARCHITECTURE.md`](PM33_DATA_REQUIREMENTS_ARCHITECTURE.md) - Strategic intelligence data architecture
 - [`app/backend/strategic_workflow_engine.py`](app/backend/strategic_workflow_engine.py) - Core strategic AI engine

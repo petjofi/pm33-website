@@ -1,0 +1,54 @@
+{
+  "validation_timestamp": "2025-08-29T00:51:06.521258",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_ux_score": 46.666666666666664,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-core-app/app/frontend/components/onboarding/PM33OnboardingModal.tsx",
+      "workflow_type": "general",
+      "ux_score": 46.666666666666664,
+      "passed": false,
+      "total_violations": 8,
+      "errors": [
+        {
+          "line": 201,
+          "rule": "missing_loading_state",
+          "message": "Async operation missing loading state",
+          "suggestion": "Add loading state: const [isLoading, setIsLoading] = useState(false)",
+          "ux_impact": "Users don't know if action was received"
+        },
+        {
+          "line": 201,
+          "rule": "missing_try_catch",
+          "message": "Missing try catch in async operation",
+          "suggestion": "Wrap async operations in try-catch blocks",
+          "ux_impact": "App crashes on errors"
+        },
+        {
+          "line": 259,
+          "rule": "form_missing_loading_state",
+          "message": "Form missing loading state",
+          "suggestion": "Add isSubmitting state during form submission",
+          "ux_impact": "Poor form experience - loading_state needed"
+        },
+        {
+          "line": 259,
+          "rule": "form_missing_field_errors",
+          "message": "Form missing field errors",
+          "suggestion": "Display specific errors per field",
+          "ux_impact": "Poor form experience - field_errors needed"
+        },
+        {
+          "line": 259,
+          "rule": "form_missing_disabled_submit",
+          "message": "Form missing disabled submit",
+          "suggestion": "Disable submit button while submitting",
+          "ux_impact": "Poor form experience - disabled_submit needed"
+        }
+      ]
+    }
+  ]
+}

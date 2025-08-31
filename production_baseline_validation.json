@@ -1,0 +1,119 @@
+{
+  "validation_timestamp": "2025-08-30T10:59:07.160170",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-marketing-website/app/page.tsx",
+      "timestamp": "2025-08-30T10:59:07.160145",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 14,
+      "errors": [
+        {
+          "line": 1,
+          "rule": "design_token_usage",
+          "message": "Must use PM33 design tokens and CSS classes",
+          "suggestion": "Use className=\"pm33-*\" classes and var(--pm33-*) CSS custom properties",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "glass_morphism",
+          "message": "Missing glass morphism - ALL cards must have backdrop-blur",
+          "suggestion": "Add: backdrop-filter: blur(20px) and -webkit-backdrop-filter: blur(20px) or use className=\"pm33-glass-card\"",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "gradient_text",
+          "message": "Missing gradient text - ALL headlines must use gradient styling",
+          "suggestion": "Add: className=\"text-gradient\" or background: linear-gradient(...)",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "professional_shadows",
+          "message": "Insufficient shadow depth - Use professional shadows, never flat",
+          "suggestion": "Replace shadow-sm with shadow-glass or shadow-premium",
+          "pattern": ""
+        },
+        {
+          "line": 19,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '20px'"
+        },
+        {
+          "line": 58,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '15px"
+        },
+        {
+          "line": 75,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '13px"
+        },
+        {
+          "line": 86,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 57,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 74,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 51,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '20px'"
+        },
+        {
+          "line": 18,
+          "rule": "forbidden_font",
+          "message": "Forbidden font family: serif",
+          "suggestion": "Use approved fonts: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto",
+          "pattern": ""
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 25,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#f0f0f0"
+        }
+      ]
+    }
+  ]
+}

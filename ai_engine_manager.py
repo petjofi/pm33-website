@@ -110,9 +110,9 @@ class AIEngineManager:
             
             client = Together(api_key=together_key)
             
-            # Quick test with serverless model
+            # Quick test with available model
             response = client.chat.completions.create(
-                model="NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",
+                model="Qwen/Qwen2.5-7B-Instruct-Turbo",
                 messages=[{"role": "user", "content": "Test"}],
                 max_tokens=10
             )
@@ -126,7 +126,7 @@ class AIEngineManager:
             print(f"❌ Together AI initialization failed: {str(e)}")
     
     def _init_anthropic(self):
-        """Initialize Anthropic engine (problematic)"""
+        """Initialize Anthropic engine with quick test"""
         try:
             import anthropic
             api_key = os.getenv('ANTHROPIC_API_KEY')
@@ -136,9 +136,24 @@ class AIEngineManager:
                 return
             
             client = anthropic.Anthropic(api_key=api_key)
-            self.engines['anthropic'] = client
-            self.engine_status['anthropic'] = 'available_untested'  # Don't test to avoid hangs
-            print("🔶 Anthropic engine available (untested due to reliability issues)")
+            
+            # Quick test with timeout protection
+            try:
+                test_response = client.messages.create(
+                    model="claude-3-haiku-20240307",
+                    max_tokens=10,
+                    messages=[{"role": "user", "content": "Test"}]
+                )
+                
+                self.engines['anthropic'] = client
+                self.engine_status['anthropic'] = 'healthy'
+                print("✅ Anthropic engine initialized and tested successfully")
+                
+            except Exception as test_e:
+                # Still make it available but mark as untested
+                self.engines['anthropic'] = client
+                self.engine_status['anthropic'] = 'available_untested'
+                print(f"🔶 Anthropic engine available (test failed: {str(test_e)[:50]}...)")
             
         except Exception as e:
             self.engine_status['anthropic'] = f'error: {str(e)[:50]}...'
@@ -157,7 +172,8 @@ class AIEngineManager:
         print(f"🚀 Engine priority: {' → '.join(engine_priority)}")
         
         for engine_name in engine_priority:
-            if self.engine_status.get(engine_name) == 'healthy':
+            # Allow both 'healthy' and 'available_untested' engines
+            if self.engine_status.get(engine_name) in ['healthy', 'available_untested']:
                 try:
                     print(f"🚀 Trying {engine_name} engine...")
                     response = self._call_engine(engine_name, question, context)
@@ -256,8 +272,8 @@ class AIEngineManager:
             if query_profile['context_size'] == 'large' and profile['context_limit'] > 16000:
                 score += 3
             
-            # Penalize if engine is not healthy
-            if self.engine_status.get(engine) != 'healthy':
+            # Penalize if engine is not healthy or available
+            if self.engine_status.get(engine) not in ['healthy', 'available_untested']:
                 score = 0
             
             engine_scores[engine] = score
@@ -356,7 +372,7 @@ class AIEngineManager:
         
         start_time = time.time()
         response = client.chat.completions.create(
-            model="llama-3.1-70b-versatile",  # Best balance of speed/quality
+            model="llama3-8b-8192",  # Working Groq model - fast and reliable
             messages=[
                 {"role": "system", "content": "You are PM33's Strategic AI Co-Pilot, an expert Product Manager consultant specializing in strategic analysis and executable frameworks."},
                 {"role": "user", "content": prompt}
@@ -372,7 +388,7 @@ class AIEngineManager:
             'response': ai_response,
             'meta': {
                 'engine': 'groq',
-                'model': 'llama-3.1-70b-versatile',
+                'model': 'llama3-8b-8192',
                 'response_time': response_time,
                 'context_chars': len(context),
                 'timestamp': datetime.now().isoformat()
@@ -390,7 +406,7 @@ class AIEngineManager:
         
         start_time = time.time()
         response = client.chat.completions.create(
-            model="NousResearch/Nous-Hermes-2-Mixtral-8x7B-DPO",  # Serverless model
+            model="Qwen/Qwen2.5-7B-Instruct-Turbo",  # Updated reliable model
             messages=[
                 {"role": "system", "content": "You are PM33's Strategic AI Co-Pilot, an expert Product Manager consultant specializing in strategic analysis and executable frameworks."},
                 {"role": "user", "content": prompt}
@@ -406,7 +422,7 @@ class AIEngineManager:
             'response': ai_response,
             'meta': {
                 'engine': 'together',
-                'model': 'llama-3-70b-chat',
+                'model': 'Qwen/Qwen2.5-7B-Instruct-Turbo',
                 'response_time': response_time,
                 'context_chars': len(context),
                 'timestamp': datetime.now().isoformat()

@@ -1,0 +1,238 @@
+#!/bin/sh
+
+# PM33 Design Expert Approval Pre-Commit Hook
+# Ensures all UI code has design expert approval at every stage
+
+echo "🎯 PM33 Complete Design System Validation - Comprehensive UI Standards Check..."
+
+# Check if any UI files are being committed
+UI_FILES=$(git diff --cached --name-only | grep -E '\.(tsx|jsx|css|scss)$')
+
+if [ -z "$UI_FILES" ]; then
+  echo "✅ No UI files changed - skipping design validation"
+  exit 0
+fi
+
+echo "🔍 UI files detected - running design validation..."
+
+# Run design validation on changed files
+VALIDATION_FAILED=false
+TOTAL_VIOLATIONS=0
+
+for file in $UI_FILES; do
+  if [ -f "$file" ]; then
+    echo "  🎨 Design validation: $file"
+    
+    # Run the comprehensive design validator
+    python mcp_design_validator.py "$file" --strict
+    DESIGN_EXIT_CODE=$?
+    
+    if [ $DESIGN_EXIT_CODE -ne 0 ]; then
+      echo "❌ DESIGN CONTRACT VIOLATION: $file"
+      VALIDATION_FAILED=true
+      TOTAL_VIOLATIONS=$((TOTAL_VIOLATIONS + DESIGN_EXIT_CODE))
+      # Log validation with violations
+      node scripts/design-enforcer-tracker.js log-validation "design" "$file" $DESIGN_EXIT_CODE
+    else
+      echo "✅ Design compliant: $file"
+      # Log successful validation
+      node scripts/design-enforcer-tracker.js log-validation "design" "$file" 0
+    fi
+    
+    echo "  🎯 UX workflow validation: $file"
+    
+    # Run the UX workflow validator
+    python mcp_ux_workflow_validator.py "$file" --strict
+    UX_EXIT_CODE=$?
+    
+    if [ $UX_EXIT_CODE -ne 0 ]; then
+      echo "❌ UX WORKFLOW VIOLATION: $file"
+      VALIDATION_FAILED=true
+      TOTAL_VIOLATIONS=$((TOTAL_VIOLATIONS + UX_EXIT_CODE))
+      # Log UX validation with violations
+      node scripts/design-enforcer-tracker.js log-validation "ux-workflow" "$file" $UX_EXIT_CODE
+    else
+      echo "✅ UX workflow compliant: $file"
+      # Log successful UX validation
+      node scripts/design-enforcer-tracker.js log-validation "ux-workflow" "$file" 0
+    fi
+  fi
+done
+
+# Check for design expert approval in commit message
+COMMIT_MSG=$(cat .git/COMMIT_EDITMSG 2>/dev/null || echo "")
+if ! echo "$COMMIT_MSG" | grep -q "DESIGN-APPROVED\|Design Expert Approved\|UX-APPROVED"; then
+  echo ""
+  echo "🚨 COMMIT BLOCKED - Missing Design & UX Expert Approval"
+  echo ""
+  echo "Required Actions:"
+  echo "1. Get design expert approval for all UI changes"
+  echo "2. Get UX expert approval for all workflow changes"
+  echo "3. Include 'DESIGN-APPROVED' or 'UX-APPROVED' in commit message"
+  echo "4. Ensure experts reviewed both design and UX validation results"
+  echo ""
+  echo "Workflow Reminder:"
+  echo "- Stage 1: Get design & UX planning approval"
+  echo "- Stage 2: Get implementation guidance"  
+  echo "- Stage 3: Get pre-commit validation approval"
+  echo ""
+  exit 1
+fi
+
+# Block commit if validation failed
+if [ "$VALIDATION_FAILED" = true ]; then
+  # Log the blocked commit
+  node scripts/design-enforcer-tracker.js log-validation "blocked-commit" "pre-commit-hook" $TOTAL_VIOLATIONS
+  
+  echo ""
+  echo "🚨 COMMIT BLOCKED - Design Contract Violations Found"
+  echo ""
+  echo "Required Actions:"
+  echo "1. Fix all design contract violations"
+  echo "2. Get design expert approval for fixes"
+  echo "3. Ensure glass morphism on ALL cards"
+  echo "4. Use only approved brand colors (#667eea, #764ba2, #10b981)"
+  echo "5. Add gradient text to headlines"
+  echo "6. Use professional shadows (no shadow-sm)"
+  echo ""
+  echo "Run: python mcp_design_validator.py [file] for detailed fixes"
+  echo "Then: Request final design expert approval"
+  echo ""
+  echo "📊 Track enforcer activity: node scripts/design-enforcer-tracker.js report"
+  echo ""
+  exit 1
+fi
+
+# Run automated contrast validation
+echo ""
+echo "🎨 Running automated contrast validation..."
+python scripts/contrast_validator.py
+
+if [ $? -ne 0 ]; then
+  echo "❌ Marketing website contrast violations detected!"
+  echo "📸 Check contrast-check-light.png and contrast-check-dark.png"
+  echo "🔧 Suggested fixes generated in marketing-contrast-fixes.css"
+  echo ""
+  echo "💡 Fix these issues before committing:"
+  echo "   1. Apply CSS fixes from marketing-contrast-fixes.css to globals.css"
+  echo "   2. Test both light and dark themes manually"  
+  echo "   3. Re-run: python scripts/contrast_validator.py"
+  echo "   4. Commit again when all checks pass"
+  exit 1
+fi
+
+# Run comprehensive design system validation
+echo ""
+echo "🎨 Running comprehensive design system checks..."
+
+# 1. Typography validation
+echo "📝 Checking typography standards..."
+if command -v node >/dev/null 2>&1; then
+  node scripts/validate-typography.js
+  TYPO_EXIT_CODE=$?
+  if [ $TYPO_EXIT_CODE -ne 0 ]; then
+    echo "❌ Typography validation failed"
+    VALIDATION_FAILED=true
+    node scripts/design-enforcer-tracker.js log-validation "typography" "multiple-files" $TYPO_EXIT_CODE
+  else
+    node scripts/design-enforcer-tracker.js log-validation "typography" "multiple-files" 0
+  fi
+else
+  echo "⚠️  Node.js not available - skipping typography check"
+fi
+
+# 2. Spacing grid validation  
+echo "📏 Checking spacing grid compliance..."
+if command -v node >/dev/null 2>&1; then
+  node scripts/validate-spacing.js
+  SPACING_EXIT_CODE=$?
+  if [ $SPACING_EXIT_CODE -ne 0 ]; then
+    echo "❌ Spacing grid validation failed"
+    VALIDATION_FAILED=true
+    node scripts/design-enforcer-tracker.js log-validation "spacing" "multiple-files" $SPACING_EXIT_CODE
+  else
+    node scripts/design-enforcer-tracker.js log-validation "spacing" "multiple-files" 0
+  fi
+else
+  echo "⚠️  Node.js not available - skipping spacing check"
+fi
+
+# 3. Layout system validation
+echo "📐 Checking layout patterns..."
+if command -v node >/dev/null 2>&1; then
+  node scripts/validate-layouts.js
+  LAYOUT_EXIT_CODE=$?
+  if [ $LAYOUT_EXIT_CODE -ne 0 ]; then
+    echo "❌ Layout validation failed"
+    VALIDATION_FAILED=true
+    node scripts/design-enforcer-tracker.js log-validation "layouts" "multiple-files" $LAYOUT_EXIT_CODE
+  else
+    node scripts/design-enforcer-tracker.js log-validation "layouts" "multiple-files" 0
+  fi
+else
+  echo "⚠️  Node.js not available - skipping layout check"
+fi
+
+# 4. Brand color validation
+echo "🌈 Checking brand color compliance..."
+if command -v node >/dev/null 2>&1; then
+  node scripts/validate-colors.js
+  COLOR_EXIT_CODE=$?
+  if [ $COLOR_EXIT_CODE -ne 0 ]; then
+    echo "❌ Brand color validation failed"
+    VALIDATION_FAILED=true
+    node scripts/design-enforcer-tracker.js log-validation "colors" "multiple-files" $COLOR_EXIT_CODE
+  else
+    node scripts/design-enforcer-tracker.js log-validation "colors" "multiple-files" 0
+  fi
+else
+  echo "⚠️  Node.js not available - skipping color check"
+fi
+
+# CSS complexity check
+if [ -f "app/globals.css" ] && [ $(wc -l < "app/globals.css") -gt 1000 ]; then
+  echo "⚠️  CSS file exceeds 1000 lines - consider refactoring for maintainability"
+fi
+
+# Run visual regression tests if available
+if command -v npx >/dev/null 2>&1 && [ -f "playwright.config.ts" ]; then
+  echo "🎨 Running visual regression tests..."
+  npx playwright test --grep "visual" --reporter=line
+  VISUAL_EXIT_CODE=$?
+  
+  if [ $VISUAL_EXIT_CODE -ne 0 ]; then
+    echo "❌ VISUAL REGRESSION DETECTED"
+    echo "Review visual changes and update approved screenshots if intentional"
+    node scripts/design-enforcer-tracker.js log-validation "visual" "playwright-tests" $VISUAL_EXIT_CODE
+    exit 1
+  else
+    node scripts/design-enforcer-tracker.js log-validation "visual" "playwright-tests" 0
+  fi
+fi
+
+# Run component audit
+echo "🔍 Running component audit..."
+python -c "
+import os
+import glob
+
+# Check for duplicate components
+tsx_files = glob.glob('**/*.tsx', recursive=True)
+component_names = [os.path.basename(f).replace('.tsx', '') for f in tsx_files if 'node_modules' not in f]
+duplicates = set([name for name in component_names if component_names.count(name) > 1])
+
+if duplicates:
+    print('⚠️  Duplicate component names found:', ', '.join(duplicates))
+    print('   Consider consolidating or renaming for consistency')
+
+# Check for non-PM33 prefixed components
+non_pm33 = [name for name in component_names if not name.startswith('PM33') and name not in ['index', 'page', 'layout']]
+if non_pm33:
+    print('💡 Consider PM33 prefix for brand consistency:', ', '.join(non_pm33[:5]))
+"
+
+echo ""
+echo "✅ All design validation and approval checks passed - commit approved"
+echo "🎯 PM33 design expert approval workflow completed successfully"
+echo "🎨 Design standards maintained with expert oversight"
+echo ""

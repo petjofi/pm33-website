@@ -1,0 +1,54 @@
+{
+  "validation_timestamp": "2025-08-30T00:41:34.129359",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_ux_score": 40.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-core-app/app/frontend/components/onboarding/PM33OnboardingFlow.tsx",
+      "workflow_type": "general",
+      "ux_score": 40.0,
+      "passed": false,
+      "total_violations": 9,
+      "errors": [
+        {
+          "line": 587,
+          "rule": "button_not_disabled_loading",
+          "message": "Buttons not disabled during loading state",
+          "suggestion": "Add disabled={isLoading} to prevent double submission",
+          "ux_impact": "Users can submit multiple times causing errors"
+        },
+        {
+          "line": 385,
+          "rule": "missing_try_catch",
+          "message": "Missing try catch in async operation",
+          "suggestion": "Wrap async operations in try-catch blocks",
+          "ux_impact": "App crashes on errors"
+        },
+        {
+          "line": 167,
+          "rule": "form_missing_field_errors",
+          "message": "Form missing field errors",
+          "suggestion": "Display specific errors per field",
+          "ux_impact": "Poor form experience - field_errors needed"
+        },
+        {
+          "line": 167,
+          "rule": "form_missing_disabled_submit",
+          "message": "Form missing disabled submit",
+          "suggestion": "Disable submit button while submitting",
+          "ux_impact": "Poor form experience - disabled_submit needed"
+        },
+        {
+          "line": 587,
+          "rule": "missing_keyboard_navigation",
+          "message": "Interactive elements missing keyboard navigation",
+          "suggestion": "Add tabIndex and onKeyDown handlers, or aria-label attributes",
+          "ux_impact": "Keyboard users cannot navigate interface"
+        }
+      ]
+    }
+  ]
+}

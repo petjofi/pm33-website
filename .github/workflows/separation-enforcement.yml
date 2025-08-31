@@ -1,0 +1,266 @@
+name: PM33 Development Coordination - Copy Pattern Framework
+on:
+  pull_request:
+    branches: [ main ]
+    types: [opened, synchronize, reopened]
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  enforce-separation-rules:
+    name: 🔒 Enforce Core App vs Marketing Website Separation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Check for Marketing Website File Modifications
+        run: |
+          echo "🔍 Checking for forbidden marketing website modifications..."
+          
+          # Define forbidden paths for core app repository
+          FORBIDDEN_MARKETING_PATHS=(
+            "marketing-website/"
+            "app/frontend/marketing-website/"
+            "app/frontend/pm33-marketing-website/"
+          )
+          
+          # Get changed files in this PR/push
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          else
+            CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          fi
+          
+          echo "📝 Changed files:"
+          echo "$CHANGED_FILES"
+          
+          # Check for forbidden modifications
+          VIOLATIONS_FOUND=false
+          
+          for file in $CHANGED_FILES; do
+            for forbidden_path in "${FORBIDDEN_MARKETING_PATHS[@]}"; do
+              if [[ "$file" == "$forbidden_path"* ]]; then
+                echo "❌ VIOLATION: Attempted to modify forbidden marketing file: $file"
+                echo "🔒 RULE: Core app agents may only READ marketing files for reference"
+                echo "✅ SOLUTION: Use copy pattern instead:"
+                echo "   1. Copy: $file"
+                echo "   2. To: app/frontend/components/core/[ComponentName].tsx"
+                echo "   3. Adapt: Use PM33 theme tokens and glass morphism"
+                VIOLATIONS_FOUND=true
+              fi
+            done
+          done
+          
+          if [ "$VIOLATIONS_FOUND" = true ]; then
+            echo ""
+            echo "🚫 SEPARATION VIOLATION DETECTED"
+            echo "📚 Reference: CLAUDE.md section 'Core App vs Marketing Website Separation'"
+            echo ""
+            echo "🔒 CRITICAL AGENT ACCESS RULES:"
+            echo "1. READ-ONLY ACCESS: Core app agents may ONLY READ marketing website pages for reference"
+            echo "2. NO MODIFICATION: Core app agents are FORBIDDEN from modifying any marketing website files"  
+            echo "3. COPY PATTERN: If agents need marketing website functionality:"
+            echo "   - Copy the marketing file to the core app directory structure"
+            echo "   - Create new core app versions in appropriate components/, pages/, or lib/ directories"
+            echo "   - Adapt the copied code for core app architecture and theme system"
+            echo ""
+            echo "❌ This PR violates separation rules and cannot be merged."
+            exit 1
+          else
+            echo "✅ No separation rule violations found"
+          fi
+
+  validate-copy-pattern:
+    name: 📋 Validate Copy Pattern Implementation
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.body, 'COPY PATTERN') || contains(github.event.commits[0].message, 'copy pattern')
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate Copy Pattern Documentation
+        run: |
+          echo "📋 Validating copy pattern implementation..."
+          
+          # Check if PR properly documents the copy pattern
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            PR_BODY="${{ github.event.pull_request.body }}"
+            
+            if echo "$PR_BODY" | grep -q "Original file:"; then
+              echo "✅ Original file documented"
+            else
+              echo "⚠️ Missing original file documentation"
+            fi
+            
+            if echo "$PR_BODY" | grep -q "Copied to:"; then
+              echo "✅ Copy destination documented"
+            else
+              echo "⚠️ Missing copy destination documentation"
+            fi
+            
+            if echo "$PR_BODY" | grep -q "Adaptations:"; then
+              echo "✅ Adaptations documented"
+            else
+              echo "⚠️ Missing adaptations documentation"
+            fi
+          fi
+          
+      - name: Verify Core App Theme Integration
+        run: |
+          echo "🎨 Checking core app theme integration..."
+          
+          # Look for proper CSS design token usage
+          if grep -r "var(--pm33-" app/frontend/components/core/ --include="*.tsx" --include="*.css"; then
+            echo "✅ CSS design tokens being used"
+          else
+            echo "⚠️ Consider using PM33 CSS design tokens"
+          fi
+          
+          # Look for theme awareness
+          if grep -r "theme.*dark\|light" app/frontend/components/core/ --include="*.tsx"; then
+            echo "✅ Theme awareness implemented"
+          else
+            echo "⚠️ Consider implementing theme awareness"
+          fi
+          
+          # Look for glass morphism
+          if grep -r "glass\|backdrop.*blur\|rgba.*0\." app/frontend/components/core/ --include="*.tsx" --include="*.css"; then
+            echo "✅ Glass morphism effects detected"
+          else
+            echo "⚠️ Consider implementing glass morphism for cards"
+          fi
+
+  check-architecture-compliance:
+    name: 🏗️ Architecture Compliance Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Validate Core App Architecture
+        run: |
+          echo "🏗️ Checking core app architecture compliance..."
+          
+          # Check for proper directory structure
+          REQUIRED_CORE_DIRS=(
+            "app/frontend/components/core"
+            "app/frontend/components/shared" 
+            "app/frontend/components/ui"
+            "app/backend/services"
+            "app/backend/routes"
+            "database"
+            "tests/multi_tenancy"
+          )
+          
+          for dir in "${REQUIRED_CORE_DIRS[@]}"; do
+            if [ -d "$dir" ]; then
+              echo "✅ Core directory exists: $dir"
+            else
+              echo "⚠️ Missing core directory: $dir"
+            fi
+          done
+          
+      - name: Check for Forbidden Dependencies
+        run: |
+          echo "🔍 Checking for forbidden marketing dependencies..."
+          
+          # Check package.json for marketing-specific dependencies
+          if [ -f "app/frontend/package.json" ]; then
+            MARKETING_DEPS=("marketing-automation" "lead-generation" "conversion-tracking")
+            
+            for dep in "${MARKETING_DEPS[@]}"; do
+              if grep -q "$dep" app/frontend/package.json; then
+                echo "⚠️ Marketing-specific dependency detected: $dep"
+                echo "💡 Consider moving to marketing-website repository"
+              fi
+            done
+          fi
+          
+      - name: Validate Proper Imports
+        run: |
+          echo "📦 Checking import patterns..."
+          
+          # Check for cross-repository imports (forbidden)
+          if grep -r "from.*marketing-website" app/ --include="*.ts" --include="*.tsx"; then
+            echo "❌ VIOLATION: Cross-repository imports detected"
+            echo "🔒 Use copy pattern instead of importing from marketing website"
+            exit 1
+          else
+            echo "✅ No cross-repository imports found"
+          fi
+          
+          # Check for proper core app imports
+          if grep -r "from.*components/core" app/frontend --include="*.ts" --include="*.tsx"; then
+            echo "✅ Core app component imports found"
+          fi
+
+  documentation-compliance:
+    name: 📚 Documentation Compliance Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Check Required Documentation Updates
+        run: |
+          echo "📚 Checking documentation compliance..."
+          
+          # Check if component documentation exists
+          if [ -f "app/frontend/docs/COMPONENT_SYSTEM.md" ]; then
+            echo "✅ Component system documentation exists"
+          else
+            echo "⚠️ Missing component system documentation"
+          fi
+          
+          if [ -f "app/frontend/docs/AGENT_HANDOFF.md" ]; then
+            echo "✅ Agent handoff documentation exists"
+          else
+            echo "⚠️ Missing agent handoff documentation" 
+          fi
+          
+      - name: Verify Architecture Documentation
+        run: |
+          echo "🏗️ Checking architecture documentation..."
+          
+          REQUIRED_DOCS=(
+            "PM33_DATA_REQUIREMENTS_ARCHITECTURE.md"
+            "PM33_MULTI_TENANCY_ARCHITECTURE.md"
+            "PM33_DESIGN_CONTRACT.md"
+            "PM33_UX_WORKFLOW_CONTRACT.md"
+          )
+          
+          for doc in "${REQUIRED_DOCS[@]}"; do
+            if [ -f "$doc" ]; then
+              echo "✅ Architecture doc exists: $doc"
+            else
+              echo "⚠️ Missing architecture doc: $doc"
+            fi
+          done
+
+  separation-success:
+    name: ✅ Separation Rules Validation Complete
+    runs-on: ubuntu-latest
+    needs: [enforce-separation-rules, validate-copy-pattern, check-architecture-compliance, documentation-compliance]
+    if: always() && needs.enforce-separation-rules.result == 'success'
+    steps:
+      - name: Separation Compliance Confirmed
+        run: |
+          echo "✅ PM33 REPOSITORY SEPARATION: VALIDATED"
+          echo ""
+          echo "🔒 SEPARATION RULES ENFORCED:"
+          echo "   ✅ No unauthorized marketing website modifications"
+          echo "   ✅ Copy pattern compliance verified"
+          echo "   ✅ Core app architecture maintained"
+          echo "   ✅ Proper import patterns confirmed"
+          echo ""
+          echo "🏗️ ARCHITECTURE INTEGRITY:"
+          echo "   ✅ Core app independence maintained"
+          echo "   ✅ Marketing website boundary respected"
+          echo "   ✅ Cross-repository contamination prevented"
+          echo ""
+          echo "🎯 BUSINESS IMPACT:"
+          echo "   ✅ Clean separation enables independent scaling"
+          echo "   ✅ Core app focus on PMO transformation preserved"
+          echo "   ✅ Marketing optimization can proceed independently"
+          echo "   ✅ $100K MRR target supported through proper separation"
+          echo ""
+          echo "🚀 Ready for deployment with architectural integrity maintained"

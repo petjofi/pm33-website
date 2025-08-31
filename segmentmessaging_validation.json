@@ -1,0 +1,245 @@
+{
+  "validation_timestamp": "2025-08-30T12:00:22.631105",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "app/frontend/components/marketing/SegmentMessaging.tsx",
+      "timestamp": "2025-08-30T12:00:22.631067",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 32,
+      "errors": [
+        {
+          "line": 1,
+          "rule": "design_token_usage",
+          "message": "Must use PM33 design tokens and CSS classes",
+          "suggestion": "Use className=\"pm33-*\" classes and var(--pm33-*) CSS custom properties",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "glass_morphism",
+          "message": "Missing glass morphism - ALL cards must have backdrop-blur",
+          "suggestion": "Add: backdrop-filter: blur(20px) and -webkit-backdrop-filter: blur(20px) or use className=\"pm33-glass-card\"",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "gradient_text",
+          "message": "Missing gradient text - ALL headlines must use gradient styling",
+          "suggestion": "Add: className=\"text-gradient\" or background: linear-gradient(...)",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "professional_shadows",
+          "message": "Insufficient shadow depth - Use professional shadows, never flat",
+          "suggestion": "Replace shadow-sm with shadow-glass or shadow-premium",
+          "pattern": ""
+        },
+        {
+          "line": 538,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '80px"
+        },
+        {
+          "line": 550,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '48px'"
+        },
+        {
+          "line": 630,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '24px'"
+        },
+        {
+          "line": 4,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "import { Title, Text, Badge, List, Card, Stack, Group, ThemeIcon, Container } from '@mantine/core';"
+        },
+        {
+          "line": 390,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "switch (component) {"
+        },
+        {
+          "line": 425,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "<List spacing=\"md\" icon={<ThemeIcon size={20} radius=\"xl\" color=\"red\" variant=\"light\">\u2717</ThemeIcon>}>"
+        },
+        {
+          "line": 452,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "<ThemeIcon"
+        },
+        {
+          "line": 459,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 512,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "<ThemeIcon size={24} variant=\"light\" color=\"blue\" radius=\"xl\">"
+        },
+        {
+          "line": 514,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 527,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "<ThemeIcon size={16} variant=\"light\" color=\"green\" radius=\"xl\">"
+        },
+        {
+          "line": 529,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 565,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\","
+        },
+        {
+          "line": 608,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "<ThemeIcon size={48} color={problem.color} variant=\"light\" radius={12}>"
+        },
+        {
+          "line": 610,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "</ThemeIcon>"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 4,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "import { Title, Text, Badge, List, Card, Stack, Group, ThemeIcon, Container } from '@mantine/core';"
+        },
+        {
+          "line": 390,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "switch (component) {"
+        },
+        {
+          "line": 425,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<List spacing=\"md\" icon={<ThemeIcon size={20} radius=\"xl\" color=\"red\" variant=\"light\">\u2717</ThemeIcon>}>"
+        },
+        {
+          "line": 452,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<ThemeIcon"
+        },
+        {
+          "line": 459,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 512,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<ThemeIcon size={24} variant=\"light\" color=\"blue\" radius=\"xl\">"
+        },
+        {
+          "line": 514,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 527,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<ThemeIcon size={16} variant=\"light\" color=\"green\" radius=\"xl\">"
+        },
+        {
+          "line": 529,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "</ThemeIcon>"
+        },
+        {
+          "line": 565,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\","
+        },
+        {
+          "line": 608,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<ThemeIcon size={48} color={problem.color} variant=\"light\" radius={12}>"
+        },
+        {
+          "line": 610,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "</ThemeIcon>"
+        }
+      ]
+    }
+  ]
+}

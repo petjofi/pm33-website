@@ -1,0 +1,637 @@
+{
+  "validation_timestamp": "2025-08-31T00:03:12.516548",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-claude-execution/app/frontend/components/integration-hub/IntegrationHubDashboard.tsx",
+      "timestamp": "2025-08-31T00:03:12.516486",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 88,
+      "errors": [
+        {
+          "line": 1,
+          "rule": "glass_morphism",
+          "message": "Missing glass morphism - ALL cards must have backdrop-blur",
+          "suggestion": "Add: backdrop-filter: blur(20px) and -webkit-backdrop-filter: blur(20px) or use className=\"pm33-glass-card\"",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "gradient_text",
+          "message": "Missing gradient text - ALL headlines must use gradient styling",
+          "suggestion": "Add: className=\"text-gradient\" or background: linear-gradient(...)",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "professional_shadows",
+          "message": "Insufficient shadow depth - Use professional shadows, never flat",
+          "suggestion": "Replace shadow-sm with shadow-glass or shadow-premium",
+          "pattern": ""
+        },
+        {
+          "line": 200,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '12px"
+        },
+        {
+          "line": 215,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '24px'"
+        },
+        {
+          "line": 311,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '8px'"
+        },
+        {
+          "line": 656,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '12px"
+        },
+        {
+          "line": 176,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '18px'"
+        },
+        {
+          "line": 201,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 234,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 253,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '18px'"
+        },
+        {
+          "line": 261,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 275,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '24px'"
+        },
+        {
+          "line": 317,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 325,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '10px'"
+        },
+        {
+          "line": 367,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 375,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 390,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 425,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 433,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 448,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 488,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 496,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 511,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 544,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 552,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 567,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 600,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 608,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 623,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 637,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '18px'"
+        },
+        {
+          "line": 679,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '14px'"
+        },
+        {
+          "line": 687,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '12px'"
+        },
+        {
+          "line": 199,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '8px'"
+        },
+        {
+          "line": 290,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '4px'"
+        },
+        {
+          "line": 313,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '8px'"
+        },
+        {
+          "line": 356,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 414,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 477,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 533,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 589,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 663,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '8px'"
+        },
+        {
+          "line": 272,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '8px'"
+        },
+        {
+          "line": 306,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '12px'"
+        },
+        {
+          "line": 340,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '24px'"
+        },
+        {
+          "line": 648,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '12px'"
+        },
+        {
+          "line": 218,
+          "rule": "forbidden_font",
+          "message": "Forbidden font family: serif",
+          "suggestion": "Use approved fonts: Inter, system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto",
+          "pattern": ""
+        },
+        {
+          "line": 9,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "* - Theme-aware CSS variables"
+        },
+        {
+          "line": 193,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<button"
+        },
+        {
+          "line": 193,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<button"
+        },
+        {
+          "line": 56,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onNavigateToStep?: (step: string) => void;"
+        },
+        {
+          "line": 56,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onNavigateToStep?: (step: string) => void;"
+        },
+        {
+          "line": 61,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onNavigateToStep"
+        },
+        {
+          "line": 61,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onNavigateToStep"
+        },
+        {
+          "line": 86,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "headers: { 'Content-Type': 'application/json' },"
+        },
+        {
+          "line": 86,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "headers: { 'Content-Type': 'application/json' },"
+        },
+        {
+          "line": 154,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "const navigateToStep = (stepName: string) => {"
+        },
+        {
+          "line": 154,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "const navigateToStep = (stepName: string) => {"
+        },
+        {
+          "line": 155,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onNavigateToStep?.(stepName);"
+        },
+        {
+          "line": 155,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onNavigateToStep?.(stepName);"
+        },
+        {
+          "line": 220,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "{/* Header */}"
+        },
+        {
+          "line": 220,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "{/* Header */}"
+        },
+        {
+          "line": 345,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onClick={() => navigateToStep('strategy')}"
+        },
+        {
+          "line": 345,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onClick={() => navigateToStep('strategy')}"
+        },
+        {
+          "line": 403,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onClick={() => navigateToStep('integrations')}"
+        },
+        {
+          "line": 403,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onClick={() => navigateToStep('integrations')}"
+        },
+        {
+          "line": 466,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onClick={() => navigateToStep('data-mapping')}"
+        },
+        {
+          "line": 466,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onClick={() => navigateToStep('data-mapping')}"
+        },
+        {
+          "line": 522,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onClick={() => navigateToStep('ai-enhancements')}"
+        },
+        {
+          "line": 522,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onClick={() => navigateToStep('ai-enhancements')}"
+        },
+        {
+          "line": 578,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "onClick={() => navigateToStep('settings')}"
+        },
+        {
+          "line": 578,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "onClick={() => navigateToStep('settings')}"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 188,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#ef4444"
+        },
+        {
+          "line": 189,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#ef4444"
+        },
+        {
+          "line": 415,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#3b82f6"
+        },
+        {
+          "line": 415,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1d4ed8"
+        },
+        {
+          "line": 458,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#ef4444"
+        },
+        {
+          "line": 478,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#059669"
+        },
+        {
+          "line": 534,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#f59e0b"
+        },
+        {
+          "line": 534,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#d97706"
+        },
+        {
+          "line": 572,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#f59e0b"
+        },
+        {
+          "line": 590,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#6b7280"
+        },
+        {
+          "line": 590,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#4b5563"
+        },
+        {
+          "line": 628,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#6b7280"
+        },
+        {
+          "line": 9,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "* - Theme-aware CSS variables"
+        },
+        {
+          "line": 55,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme?: 'light' | 'dark';"
+        },
+        {
+          "line": 60,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme = 'dark',"
+        }
+      ]
+    }
+  ]
+}

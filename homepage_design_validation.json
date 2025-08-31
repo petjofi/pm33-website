@@ -1,0 +1,315 @@
+{
+  "validation_timestamp": "2025-08-30T10:37:10.266840",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-claude-execution/marketing-website/app/page.tsx",
+      "timestamp": "2025-08-30T10:37:10.266814",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 42,
+      "errors": [
+        {
+          "line": 1,
+          "rule": "design_token_usage",
+          "message": "Must use PM33 design tokens and CSS classes",
+          "suggestion": "Use className=\"pm33-*\" classes and var(--pm33-*) CSS custom properties",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "gradient_text",
+          "message": "Missing gradient text - ALL headlines must use gradient styling",
+          "suggestion": "Add: className=\"text-gradient\" or background: linear-gradient(...)",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "professional_shadows",
+          "message": "Insufficient shadow depth - Use professional shadows, never flat",
+          "suggestion": "Replace shadow-sm with shadow-glass or shadow-premium",
+          "pattern": ""
+        },
+        {
+          "line": 146,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '32px'"
+        },
+        {
+          "line": 173,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '16px"
+        },
+        {
+          "line": 183,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '20px'"
+        },
+        {
+          "line": 222,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '80px"
+        },
+        {
+          "line": 260,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '24px'"
+        },
+        {
+          "line": 330,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '32px'"
+        },
+        {
+          "line": 359,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "padding: '80px"
+        },
+        {
+          "line": 96,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 387,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "fontSize: '16px'"
+        },
+        {
+          "line": 184,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 243,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\""
+        },
+        {
+          "line": 4,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "import { Container, Grid, Title, Text, Group, Stack, Badge, SimpleGrid, Box, Button } from '@mantine/core';"
+        },
+        {
+          "line": 4,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "import { Container, Grid, Title, Text, Group, Stack, Badge, SimpleGrid, Box, Button } from '@mantine/core';"
+        },
+        {
+          "line": 88,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 88,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 102,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 102,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 104,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 104,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 120,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 120,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 379,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 379,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 394,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 394,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 396,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 396,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 410,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 410,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 7,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "import Navigation from './components/marketing/Navigation';"
+        },
+        {
+          "line": 7,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "import Navigation from './components/marketing/Navigation';"
+        },
+        {
+          "line": 28,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "<Navigation />"
+        },
+        {
+          "line": 28,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "<Navigation />"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 35,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1E40AF"
+        },
+        {
+          "line": 35,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1e3a8a"
+        },
+        {
+          "line": 69,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#f0f9ff"
+        },
+        {
+          "line": 358,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1a1f3a"
+        },
+        {
+          "line": 243,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\""
+        }
+      ]
+    }
+  ]
+}

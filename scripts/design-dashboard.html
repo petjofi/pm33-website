@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM33 Design Enforcer Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 16px;
+            padding: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h2 {
+            color: #1a202c;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+        }
+
+        .metric-label {
+            color: #4b5563;
+            font-weight: 500;
+        }
+
+        .metric-value {
+            color: #1a202c;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .success {
+            color: #10b981 !important;
+        }
+
+        .warning {
+            color: #f59e0b !important;
+        }
+
+        .error {
+            color: #ef4444 !important;
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .status-excellent {
+            background: #10b981;
+        }
+
+        .status-good {
+            background: #f59e0b;
+        }
+
+        .status-attention {
+            background: #ef4444;
+        }
+
+        .activity-log {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 16px;
+        }
+
+        .activity-item {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .activity-item.violation {
+            border-left-color: #ef4444;
+        }
+
+        .activity-item.approval {
+            border-left-color: #10b981;
+        }
+
+        .activity-time {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .activity-message {
+            color: #1a202c;
+            margin-top: 4px;
+        }
+
+        .refresh-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 16px;
+        }
+
+        .refresh-btn:hover {
+            background: #764ba2;
+        }
+
+        .chart-container {
+            height: 200px;
+            margin: 16px 0;
+            background: #f8fafc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        .export-section {
+            text-align: center;
+            margin-top: 32px;
+        }
+
+        .export-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 0 8px;
+            transition: background 0.2s;
+        }
+
+        .export-btn:hover {
+            background: #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>🎨 PM33 Design Enforcer Dashboard</h1>
+            <p>Real-time monitoring of design standard compliance</p>
+        </div>
+
+        <div class="grid">
+            <!-- Overall Metrics Card -->
+            <div class="card">
+                <h2>📊 Overall Metrics</h2>
+                <div class="metric">
+                    <span class="metric-label">Total Validations</span>
+                    <span class="metric-value" id="total-validations">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Total Violations</span>
+                    <span class="metric-value" id="total-violations">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Blocked Commits</span>
+                    <span class="metric-value" id="blocked-commits">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Compliance Rate</span>
+                    <span class="metric-value" id="compliance-rate">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Validation Breakdown Card -->
+            <div class="card">
+                <h2>🔍 Validation Breakdown</h2>
+                <div class="metric">
+                    <span class="metric-label">Typography</span>
+                    <span class="metric-value" id="typography-rate">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Spacing</span>
+                    <span class="metric-value" id="spacing-rate">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Colors</span>
+                    <span class="metric-value" id="colors-rate">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Layouts</span>
+                    <span class="metric-value" id="layouts-rate">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Health Status Card -->
+            <div class="card">
+                <h2>🏥 Enforcer Health</h2>
+                <div class="metric">
+                    <span class="metric-label">Overall Status</span>
+                    <span class="metric-value" id="overall-status">
+                        <span class="status-indicator" id="status-indicator"></span>
+                        <span id="status-text">Loading...</span>
+                    </span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Last Activity</span>
+                    <span class="metric-value" id="last-activity">Loading...</span>
+                </div>
+                <div class="metric">
+                    <span class="metric-label">Avg Violations/Commit</span>
+                    <span class="metric-value" id="avg-violations">Loading...</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Compliance Trend Chart -->
+        <div class="card">
+            <h2>📈 Compliance Trends</h2>
+            <div class="chart-container">
+                Chart visualization would be integrated here with Chart.js or similar library
+            </div>
+        </div>
+
+        <!-- Recent Activity Log -->
+        <div class="card">
+            <h2>📅 Recent Activity</h2>
+            <div class="activity-log" id="activity-log">
+                Loading recent activity...
+            </div>
+            <button class="refresh-btn" onclick="refreshData()">🔄 Refresh Data</button>
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+            <button class="export-btn" onclick="exportData()">📤 Export Data</button>
+            <button class="export-btn" onclick="generateReport()">📋 Generate Report</button>
+            <button class="export-btn" onclick="cleanLogs()">🧹 Clean Old Logs</button>
+        </div>
+    </div>
+
+    <script>
+        // Mock data for demonstration - in real implementation, this would fetch from the tracker
+        let mockMetrics = {
+            totalValidations: 247,
+            totalViolations: 18,
+            totalApprovals: 43,
+            blockedCommits: 3,
+            complianceRate: 92.7,
+            averageViolationsPerCommit: 0.3,
+            lastActivity: new Date().toISOString(),
+            validationsByType: {
+                typography: 65,
+                spacing: 58,
+                colors: 72,
+                layouts: 52,
+                visual: 0
+            },
+            violationsByType: {
+                typography: 3,
+                spacing: 5,
+                colors: 7,
+                layouts: 3,
+                visual: 0
+            }
+        };
+
+        let mockActivity = [
+            {
+                timestamp: new Date(Date.now() - 3600000).toISOString(),
+                type: 'validation',
+                message: '✅ Typography validation passed for HomePage.tsx',
+                isViolation: false
+            },
+            {
+                timestamp: new Date(Date.now() - 7200000).toISOString(),
+                type: 'violation',
+                message: '❌ 2 color violations found in ProductCard.tsx',
+                isViolation: true
+            },
+            {
+                timestamp: new Date(Date.now() - 10800000).toISOString(),
+                type: 'approval',
+                message: '✅ Design approved by UX Expert for dashboard updates',
+                isViolation: false
+            },
+            {
+                timestamp: new Date(Date.now() - 14400000).toISOString(),
+                type: 'blocked',
+                message: '🚨 Commit blocked: 5 violations in multiple files',
+                isViolation: true
+            }
+        ];
+
+        function loadDashboardData() {
+            // Overall metrics
+            document.getElementById('total-validations').textContent = mockMetrics.totalValidations;
+            document.getElementById('total-violations').textContent = mockMetrics.totalViolations;
+            document.getElementById('blocked-commits').textContent = mockMetrics.blockedCommits;
+            
+            const complianceRate = document.getElementById('compliance-rate');
+            complianceRate.textContent = mockMetrics.complianceRate.toFixed(1) + '%';
+            complianceRate.className = 'metric-value ' + (mockMetrics.complianceRate >= 95 ? 'success' : mockMetrics.complianceRate >= 85 ? 'warning' : 'error');
+
+            // Validation breakdown
+            Object.entries(mockMetrics.validationsByType).forEach(([type, validations]) => {
+                const violations = mockMetrics.violationsByType[type] || 0;
+                const successRate = validations > 0 ? ((validations - violations) / validations * 100).toFixed(1) : 100;
+                const element = document.getElementById(type + '-rate');
+                if (element) {
+                    element.textContent = successRate + '%';
+                    element.className = 'metric-value ' + (successRate >= 95 ? 'success' : successRate >= 85 ? 'warning' : 'error');
+                }
+            });
+
+            // Health status
+            const statusIndicator = document.getElementById('status-indicator');
+            const statusText = document.getElementById('status-text');
+            if (mockMetrics.complianceRate >= 95) {
+                statusIndicator.className = 'status-indicator status-excellent';
+                statusText.textContent = 'Excellent';
+                statusText.className = 'success';
+            } else if (mockMetrics.complianceRate >= 85) {
+                statusIndicator.className = 'status-indicator status-good';
+                statusText.textContent = 'Good';
+                statusText.className = 'warning';
+            } else {
+                statusIndicator.className = 'status-indicator status-attention';
+                statusText.textContent = 'Needs Attention';
+                statusText.className = 'error';
+            }
+
+            document.getElementById('last-activity').textContent = new Date(mockMetrics.lastActivity).toLocaleString();
+            document.getElementById('avg-violations').textContent = mockMetrics.averageViolationsPerCommit.toFixed(2);
+
+            // Activity log
+            const activityLog = document.getElementById('activity-log');
+            activityLog.innerHTML = mockActivity.map(activity => `
+                <div class="activity-item ${activity.isViolation ? 'violation' : 'approval'}">
+                    <div class="activity-time">${new Date(activity.timestamp).toLocaleString()}</div>
+                    <div class="activity-message">${activity.message}</div>
+                </div>
+            `).join('');
+        }
+
+        function refreshData() {
+            console.log('Refreshing data from design-enforcer-tracker...');
+            // In real implementation, this would run:
+            // fetch('/api/design-enforcer-data').then(response => response.json()).then(loadDashboardData)
+            
+            // Simulate data refresh
+            mockMetrics.totalValidations += Math.floor(Math.random() * 5);
+            mockMetrics.lastActivity = new Date().toISOString();
+            loadDashboardData();
+            
+            // Show refresh feedback
+            const btn = document.querySelector('.refresh-btn');
+            const originalText = btn.textContent;
+            btn.textContent = '✅ Refreshed';
+            setTimeout(() => {
+                btn.textContent = originalText;
+            }, 2000);
+        }
+
+        function exportData() {
+            console.log('Exporting data...');
+            // In real implementation, this would run:
+            // node scripts/design-enforcer-tracker.js export
+            alert('Data export functionality would run: node scripts/design-enforcer-tracker.js export');
+        }
+
+        function generateReport() {
+            console.log('Generating detailed report...');
+            // In real implementation, this would run:
+            // node scripts/design-enforcer-tracker.js report --detailed
+            alert('Report generation would run: node scripts/design-enforcer-tracker.js report --detailed');
+        }
+
+        function cleanLogs() {
+            if (confirm('Clean logs older than 30 days?')) {
+                console.log('Cleaning old logs...');
+                // In real implementation, this would run:
+                // node scripts/design-enforcer-tracker.js clean 30
+                alert('Log cleaning would run: node scripts/design-enforcer-tracker.js clean 30');
+            }
+        }
+
+        // Load data on page load
+        document.addEventListener('DOMContentLoaded', loadDashboardData);
+
+        // Auto-refresh every 30 seconds
+        setInterval(refreshData, 30000);
+    </script>
+</body>
+</html>

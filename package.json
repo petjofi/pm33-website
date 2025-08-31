@@ -1,0 +1,26 @@
+{
+  "name": "pm33-design-enforcement",
+  "version": "1.0.0", 
+  "description": "PM33 Design Contract Enforcement System",
+  "scripts": {
+    "validate:design": "python mcp_design_validator.py marketing-website/app --export validation_report.json",
+    "validate:single": "python mcp_design_validator.py",
+    "validate:strict": "python mcp_design_validator.py . --strict",
+    "test:visual": "npx playwright test --grep 'visual' --reporter=line",
+    "test:contrast": "npx playwright test --project=marketing-contrast-validation --reporter=line",
+    "validate:contrast": "python mcp_design_validator.py --contrast-test http://localhost:3000 --async-mode",
+    "audit:components": "python -c \"import scripts.audit_components; scripts.audit_components.run()\"",
+    "validate:all": "npm run validate:design && npm run test:visual && npm run test:contrast && npm run audit:components",
+    "precommit": "npm run validate:all",
+    "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": ".husky/pre-commit"
+    }
+  },
+  "devDependencies": {
+    "husky": "^8.0.3",
+    "@playwright/test": "^1.40.0"
+  }
+}

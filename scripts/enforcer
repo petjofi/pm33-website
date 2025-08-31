@@ -1,0 +1,174 @@
+#!/bin/bash
+
+# PM33 Design Enforcer Command Center
+# Centralized access to all design enforcement tracking and monitoring
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TRACKER_SCRIPT="$SCRIPT_DIR/design-enforcer-tracker.js"
+DASHBOARD_HTML="$SCRIPT_DIR/design-dashboard.html"
+
+show_help() {
+    echo "🎨 PM33 Design Enforcer Command Center"
+    echo ""
+    echo "Commands:"
+    echo "  status                   Quick status overview"
+    echo "  report [--detailed]      Full activity report"
+    echo "  dashboard               Open visual dashboard in browser"
+    echo "  export                  Export all data to JSON"
+    echo "  clean [days]            Clean logs older than N days (default: 30)"
+    echo "  log <type> <file> [violations]  Log validation activity"
+    echo "  approve <approver> <message>    Log design approval"
+    echo ""
+    echo "Quick Actions:"
+    echo "  ./scripts/enforcer status        # Quick health check"
+    echo "  ./scripts/enforcer dashboard     # Visual dashboard"
+    echo "  ./scripts/enforcer report        # Detailed report"
+    echo ""
+    echo "Examples:"
+    echo "  ./scripts/enforcer log typography HomePage.tsx 2"
+    echo "  ./scripts/enforcer approve 'UX-Expert' 'Dashboard updates approved'"
+    echo "  ./scripts/enforcer clean 14"
+}
+
+quick_status() {
+    echo "🎯 PM33 Design Enforcer - Quick Status"
+    echo "======================================="
+    
+    # Check if tracker logs exist
+    LOG_DIR=".design-enforcement-logs"
+    if [ ! -d "$LOG_DIR" ]; then
+        echo "📊 Status: Not initialized - no enforcement activity yet"
+        echo "💡 Run a git commit to start tracking activity"
+        return
+    fi
+    
+    # Get basic metrics
+    if [ -f "$LOG_DIR/metrics.json" ]; then
+        if command -v node >/dev/null 2>&1; then
+            echo "📈 Getting latest metrics..."
+            node "$TRACKER_SCRIPT" report | head -20
+        else
+            echo "⚠️  Node.js not available - cannot generate detailed metrics"
+            echo "📁 Log files exist in $LOG_DIR"
+            echo "📊 Use: node scripts/design-enforcer-tracker.js report"
+        fi
+    else
+        echo "📊 Status: Tracking initialized but no activity recorded yet"
+        echo "💡 Make a commit with UI changes to see enforcement activity"
+    fi
+}
+
+open_dashboard() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        open "$DASHBOARD_HTML"
+        echo "🎨 Opened design enforcer dashboard in default browser"
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        # Linux
+        if command -v xdg-open >/dev/null 2>&1; then
+            xdg-open "$DASHBOARD_HTML"
+            echo "🎨 Opened design enforcer dashboard in default browser"
+        else
+            echo "🎨 Dashboard available at: file://$DASHBOARD_HTML"
+        fi
+    else
+        # Windows or other
+        echo "🎨 Dashboard available at: file://$DASHBOARD_HTML"
+    fi
+    
+    echo ""
+    echo "📊 Dashboard Features:"
+    echo "   • Real-time compliance metrics"
+    echo "   • Design & UX validation breakdown by type"
+    echo "   • Recent activity timeline"
+    echo "   • Health status indicators"
+    echo "   • UX workflow pattern analysis"
+    echo "   • Data export capabilities"
+}
+
+case "$1" in
+    "status")
+        quick_status
+        ;;
+    
+    "report")
+        if command -v node >/dev/null 2>&1; then
+            if [ "$2" = "--detailed" ]; then
+                node "$TRACKER_SCRIPT" report --detailed
+            else
+                node "$TRACKER_SCRIPT" report
+            fi
+        else
+            echo "❌ Node.js required for detailed reports"
+            quick_status
+        fi
+        ;;
+    
+    "dashboard")
+        open_dashboard
+        ;;
+    
+    "export")
+        if command -v node >/dev/null 2>&1; then
+            node "$TRACKER_SCRIPT" export
+        else
+            echo "❌ Node.js required for data export"
+        fi
+        ;;
+    
+    "clean")
+        days=${2:-30}
+        if command -v node >/dev/null 2>&1; then
+            node "$TRACKER_SCRIPT" clean "$days"
+        else
+            echo "❌ Node.js required for log cleaning"
+        fi
+        ;;
+    
+    "log")
+        if [ -z "$2" ] || [ -z "$3" ]; then
+            echo "❌ Usage: enforcer log <type> <file> [violations]"
+            echo "   Example: enforcer log typography HomePage.tsx 2"
+            exit 1
+        fi
+        
+        type="$2"
+        file="$3"
+        violations="${4:-0}"
+        
+        if command -v node >/dev/null 2>&1; then
+            node "$TRACKER_SCRIPT" log-validation "$type" "$file" "$violations"
+        else
+            echo "❌ Node.js required for logging"
+        fi
+        ;;
+    
+    "approve")
+        if [ -z "$2" ] || [ -z "$3" ]; then
+            echo "❌ Usage: enforcer approve <approver> <message> [true/false]"
+            echo "   Example: enforcer approve 'UX-Expert' 'Dashboard approved'"
+            exit 1
+        fi
+        
+        approver="$2"
+        message="$3"
+        approved="${4:-true}"
+        
+        if command -v node >/dev/null 2>&1; then
+            node "$TRACKER_SCRIPT" log-approval "$approver" "$message" "$approved"
+        else
+            echo "❌ Node.js required for approval logging"
+        fi
+        ;;
+    
+    "help"|"-h"|"--help"|"")
+        show_help
+        ;;
+    
+    *)
+        echo "❌ Unknown command: $1"
+        echo ""
+        show_help
+        exit 1
+        ;;
+esac

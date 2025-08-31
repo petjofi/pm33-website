@@ -1,0 +1,112 @@
+{
+  "validation_timestamp": "2025-08-30T11:10:55.909122",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-marketing-website/app/page.tsx",
+      "timestamp": "2025-08-30T11:10:55.909087",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 13,
+      "errors": [
+        {
+          "line": 163,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\""
+        },
+        {
+          "line": 3,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "import { Container, Grid, Title, Text, Group, Stack, Badge, SimpleGrid, Box, Button } from '@mantine/core';"
+        },
+        {
+          "line": 3,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "import { Container, Grid, Title, Text, Group, Stack, Badge, SimpleGrid, Box, Button } from '@mantine/core';"
+        },
+        {
+          "line": 74,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 74,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 93,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 93,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 95,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "<Button"
+        },
+        {
+          "line": 95,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "<Button"
+        },
+        {
+          "line": 111,
+          "rule": "button_brand_colors",
+          "message": "Button not using PM33 brand colors",
+          "suggestion": "Use gradient: bg-gradient-to-r from-[#667eea] to-[#764ba2] or solid: bg-[#10b981]",
+          "pattern": "</Button>"
+        },
+        {
+          "line": 111,
+          "rule": "button_hover_states",
+          "message": "Button missing hover states",
+          "suggestion": "Add hover:scale-105 transition-transform or hover:opacity-90",
+          "pattern": "</Button>"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 163,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "description: \"Spent switching between PM tools, losing context every time\""
+        }
+      ]
+    }
+  ]
+}

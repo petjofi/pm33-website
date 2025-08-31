@@ -1,0 +1,448 @@
+{
+  "validation_timestamp": "2025-08-30T00:42:58.832406",
+  "validator_version": "1.0.0",
+  "total_components": 1,
+  "passed_components": 0,
+  "failed_components": 1,
+  "average_compliance": 0.0,
+  "reports": [
+    {
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-core-app-production/app/frontend/components/ui/PM33Card.tsx",
+      "timestamp": "2025-08-30T00:42:58.832375",
+      "compliance_score": 0,
+      "passed": false,
+      "total_violations": 61,
+      "errors": [
+        {
+          "line": 1,
+          "rule": "glass_morphism",
+          "message": "Missing glass morphism - ALL cards must have backdrop-blur",
+          "suggestion": "Add: backdrop-filter: blur(20px) and -webkit-backdrop-filter: blur(20px) or use className=\"pm33-glass-card\"",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "gradient_text",
+          "message": "Missing gradient text - ALL headlines must use gradient styling",
+          "suggestion": "Add: className=\"text-gradient\" or background: linear-gradient(...)",
+          "pattern": ""
+        },
+        {
+          "line": 1,
+          "rule": "professional_shadows",
+          "message": "Insufficient shadow depth - Use professional shadows, never flat",
+          "suggestion": "Replace shadow-sm with shadow-glass or shadow-premium",
+          "pattern": ""
+        },
+        {
+          "line": 200,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#ffffff' :"
+        },
+        {
+          "line": 209,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#cbd5e1' :"
+        },
+        {
+          "line": 236,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#94a3b8' :"
+        },
+        {
+          "line": 245,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#ffffff' :"
+        },
+        {
+          "line": 257,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#ffffff' :"
+        },
+        {
+          "line": 267,
+          "rule": "theme_conditional_inline",
+          "message": "Theme-conditional inline styles forbidden - Use CSS classes with design tokens",
+          "suggestion": "Replace with className using CSS custom properties (e.g., className=\"pm33-glass-card\")",
+          "pattern": "theme === 'dark' ? '#94a3b8' :"
+        },
+        {
+          "line": 53,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "borderRadius: '12px'"
+        },
+        {
+          "line": 235,
+          "rule": "hardcoded_design_values",
+          "message": "Hardcoded design values forbidden - Use design tokens",
+          "suggestion": "Use CSS custom properties: var(--pm33-spacing-md), var(--pm33-text-lg), var(--pm33-radius-md)",
+          "pattern": "gap: '8px'"
+        },
+        {
+          "line": 9,
+          "rule": "toggle_theme_support",
+          "message": "Toggle element missing dark/light theme support",
+          "suggestion": "Add dark: classes and theme-conditional styling (e.g., dark:bg-gray-800 dark:text-white)",
+          "pattern": "* - Theme-aware styling (light/dark modes)"
+        },
+        {
+          "line": 11,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "* - Flexible content with header, body, footer slots"
+        },
+        {
+          "line": 11,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "* - Flexible content with header, body, footer slots"
+        },
+        {
+          "line": 23,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "header?: ReactNode"
+        },
+        {
+          "line": 23,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "header?: ReactNode"
+        },
+        {
+          "line": 35,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "header,"
+        },
+        {
+          "line": 35,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "header,"
+        },
+        {
+          "line": 109,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "{/* Card Header */}"
+        },
+        {
+          "line": 109,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "{/* Card Header */}"
+        },
+        {
+          "line": 110,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "{header && ("
+        },
+        {
+          "line": 110,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "{header && ("
+        },
+        {
+          "line": 112,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "className=\"pm33-card-header\""
+        },
+        {
+          "line": 112,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "className=\"pm33-card-header\""
+        },
+        {
+          "line": 121,
+          "rule": "nav_glass_morphism",
+          "message": "Navigation missing glass morphism effect",
+          "suggestion": "Add bg-white/95 backdrop-blur-lg dark:bg-gray-900/95 for glass effect",
+          "pattern": "{header}"
+        },
+        {
+          "line": 121,
+          "rule": "nav_theme_support",
+          "message": "Navigation missing theme support",
+          "suggestion": "Add dark: variants for all colors and backgrounds",
+          "pattern": "{header}"
+        }
+      ],
+      "warnings": [
+        {
+          "line": 1,
+          "rule": "rounded_corners",
+          "message": "Sharp corners detected - Use rounded corners for professional feel",
+          "suggestion": "Add: rounded-lg or border-radius: var(--radius-lg)",
+          "pattern": ""
+        },
+        {
+          "line": 170,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#3b82f6"
+        },
+        {
+          "line": 200,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1e293b"
+        },
+        {
+          "line": 209,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#cbd5e1"
+        },
+        {
+          "line": 209,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#64748b"
+        },
+        {
+          "line": 236,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#94a3b8"
+        },
+        {
+          "line": 236,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#64748b"
+        },
+        {
+          "line": 245,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1e293b"
+        },
+        {
+          "line": 257,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#1e293b"
+        },
+        {
+          "line": 267,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#94a3b8"
+        },
+        {
+          "line": 267,
+          "rule": "non_brand_colors",
+          "message": "Non-brand colors detected - Use approved PM33 palette only",
+          "suggestion": "Use approved colors: #667eea, #764ba2, #10b981, #ffffff, #0a0e27",
+          "pattern": "#64748b"
+        },
+        {
+          "line": 4,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "* UX Pattern: Premium glass morphism effects with theme awareness"
+        },
+        {
+          "line": 9,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "* - Theme-aware styling (light/dark modes)"
+        },
+        {
+          "line": 20,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme?: 'light' | 'dark'"
+        },
+        {
+          "line": 32,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme = 'light',"
+        },
+        {
+          "line": 43,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "background: theme === 'dark'"
+        },
+        {
+          "line": 50,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "border: theme === 'dark'"
+        },
+        {
+          "line": 56,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "boxShadow: theme === 'dark'"
+        },
+        {
+          "line": 80,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "element.style.boxShadow = theme === 'dark'"
+        },
+        {
+          "line": 90,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "element.style.boxShadow = theme === 'dark'"
+        },
+        {
+          "line": 116,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "borderBottom: theme === 'dark'"
+        },
+        {
+          "line": 137,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "borderTop: theme === 'dark'"
+        },
+        {
+          "line": 154,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "background: theme === 'dark'"
+        },
+        {
+          "line": 171,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme = 'light',"
+        },
+        {
+          "line": 178,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme?: 'light' | 'dark'"
+        },
+        {
+          "line": 182,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<PM33Card theme={theme} clickable hoverable onClick={onClick}>"
+        },
+        {
+          "line": 200,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "color: theme === 'dark' ? '#ffffff' : '#1e293b',"
+        },
+        {
+          "line": 209,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "color: theme === 'dark' ? '#cbd5e1' : '#64748b',"
+        },
+        {
+          "line": 225,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme = 'light'"
+        },
+        {
+          "line": 231,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "theme?: 'light' | 'dark'"
+        },
+        {
+          "line": 234,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<PM33Card theme={theme} hoverable>"
+        },
+        {
+          "line": 236,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "<div style={{ color: theme === 'dark' ? '#94a3b8' : '#64748b' }}>"
+        },
+        {
+          "line": 245,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "color: theme === 'dark' ? '#ffffff' : '#1e293b'"
+        },
+        {
+          "line": 257,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "color: theme === 'dark' ? '#ffffff' : '#1e293b',"
+        },
+        {
+          "line": 267,
+          "rule": "toggle_accessibility",
+          "message": "Toggle missing accessibility attributes",
+          "suggestion": "Add aria-checked, role=\"switch\", or aria-label",
+          "pattern": "color: theme === 'dark' ? '#94a3b8' : '#64748b'"
+        }
+      ]
+    }
+  ]
+}
