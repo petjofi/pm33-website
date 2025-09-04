@@ -1,52 +1,52 @@
 {
-  "validation_timestamp": "2025-08-31T00:03:22.069389",
+  "validation_timestamp": "2025-09-02T04:05:44.380759",
   "validator_version": "1.0.0",
   "total_components": 1,
   "passed_components": 0,
   "failed_components": 1,
-  "average_ux_score": 53.333333333333336,
+  "average_ux_score": 46.666666666666664,
   "reports": [
     {
-      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-claude-execution/app/frontend/components/integration-hub/IntegrationHubDashboard.tsx",
-      "workflow_type": "general",
-      "ux_score": 53.333333333333336,
+      "component_path": "/Users/ssaper/Desktop/my-projects/pm33-core-app-production/app/frontend/components/integration-hub/StrategySetupPage.tsx",
+      "workflow_type": "strategic_analysis",
+      "ux_score": 46.666666666666664,
       "passed": false,
-      "total_violations": 7,
+      "total_violations": 8,
       "errors": [
         {
-          "line": 193,
-          "rule": "button_not_disabled_loading",
-          "message": "Buttons not disabled during loading state",
-          "suggestion": "Add disabled={isLoading} to prevent double submission",
-          "ux_impact": "Users can submit multiple times causing errors"
-        },
-        {
-          "line": 79,
+          "line": 91,
           "rule": "missing_try_catch",
           "message": "Missing try catch in async operation",
           "suggestion": "Wrap async operations in try-catch blocks",
           "ux_impact": "App crashes on errors"
         },
         {
-          "line": 238,
+          "line": 96,
           "rule": "form_missing_field_errors",
           "message": "Form missing field errors",
           "suggestion": "Display specific errors per field",
           "ux_impact": "Poor form experience - field_errors needed"
         },
         {
-          "line": 238,
+          "line": 96,
           "rule": "form_missing_disabled_submit",
           "message": "Form missing disabled submit",
           "suggestion": "Disable submit button while submitting",
           "ux_impact": "Poor form experience - disabled_submit needed"
         },
         {
-          "line": 193,
-          "rule": "missing_keyboard_navigation",
-          "message": "Interactive elements missing keyboard navigation",
-          "suggestion": "Add tabIndex and onKeyDown handlers, or aria-label attributes",
-          "ux_impact": "Keyboard users cannot navigate interface"
+          "line": 1,
+          "rule": "workflow_missing_show_reasoning_chain",
+          "message": "strategic_analysis workflow missing: show reasoning chain",
+          "suggestion": "Display step-by-step analysis reasoning with expandable sections",
+          "ux_impact": "Incomplete strategic_analysis user experience"
+        },
+        {
+          "line": 1,
+          "rule": "workflow_missing_display_risk_factors",
+          "message": "strategic_analysis workflow missing: display risk factors",
+          "suggestion": "List top 3-5 risk factors with mitigation suggestions",
+          "ux_impact": "Incomplete strategic_analysis user experience"
         }
       ]
     }
