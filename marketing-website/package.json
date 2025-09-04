@@ -1,39 +1,36 @@
 {
   "name": "pm33-marketing-website",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
+  "description": "PM33 autonomous marketing website",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "deploy": "vercel --prod",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@mantine/core": "^8.2.5",
     "@mantine/hooks": "^8.2.5",
-    "@mantine/notifications": "^8.2.5",
-    "@tabler/icons-react": "^3.34.1",
-    "framer-motion": "^12.23.12",
-    "lucide-react": "^0.539.0",
-    "next": "15.4.6",
-    "react": "19.1.0",
-    "react-dom": "19.1.0"
+    "@tabler/icons-react": "^3.21.0",
+    "@tailwindcss/postcss": "^4.1.12",
+    "autoprefixer": "^10.4.21",
+    "next": "15.5.0",
+    "postcss": "^8.5.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "15.4.6",
-    "postcss": "^8",
-    "tailwindcss": "^4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.5.0",
     "typescript": "^5"
   },
-  "eslintConfig": {
-    "extends": [
-      "next/core-web-vitals"
-    ]
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

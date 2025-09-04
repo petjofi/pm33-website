@@ -1,0 +1,181 @@
+# PM33 Deployment Agent Configuration
+# Defines deployment behavior, validation settings, and environment management
+
+environments:
+  development:
+    branch: "feature-branches"
+    remote: "origin"
+    auto_backup: true
+    validation_level: "basic"
+    description: "Development environment for feature branches and backups"
+    
+  staging:
+    branch: "main"
+    remote: "origin"
+    validation_required: true
+    validation_level: "comprehensive"
+    auto_rollback: true
+    server_port: 3001
+    health_check_interval: 30
+    description: "Staging environment for integration testing and validation"
+    
+  production:
+    branch: "main"
+    remote: "production"
+    approval_required: true
+    validation_level: "enterprise"
+    require_staging_validation: true
+    auto_rollback: true
+    backup_retention_days: 30
+    description: "Production environment for PM-33.com live deployment"
+
+remotes:
+  development: "origin"
+  staging: "origin"
+  production: "production"
+
+validation_settings:
+  design_validator:
+    enabled: true
+    strict_mode: true
+    timeout: 300
+    command: "python3 mcp_design_validator.py --strict --json"
+    
+  ux_validator:
+    enabled: true
+    strict_mode: true
+    timeout: 300
+    command: "python3 mcp_ux_workflow_validator.py --strict --json"
+    
+  theme_validator:
+    enabled: true
+    check_css_variables: true
+    check_theme_consistency: true
+    critical_pages: ["about", "homepage", "pricing"]
+    
+  build_validator:
+    enabled: true
+    timeout: 600
+    command: "npm run build"
+    
+  comprehensive_suite:
+    timeout: 900
+    parallel_execution: true
+    fail_fast: false
+
+server_settings:
+  staging_port: 3001
+  startup_timeout: 60
+  health_check_timeout: 10
+  health_check_interval: 5
+  max_startup_retries: 3
+  
+  # Server health endpoints
+  health_endpoints:
+    - path: "/"
+      expected_status: 200
+    - path: "/about" 
+      expected_status: 200
+    - path: "/pricing"
+      expected_status: 200
+
+git_settings:
+  auto_fetch: true
+  conflict_resolution: "manual"
+  backup_before_operations: true
+  
+  # Branch protection
+  protected_branches: ["main", "production"]
+  require_clean_working_tree: true
+  
+  # Remote synchronization
+  sync_remotes_before_deploy: true
+  check_divergence: true
+
+monitoring:
+  deployment_tracking: true
+  performance_monitoring: true
+  error_reporting: true
+  
+  # Integration settings
+  posthog_events: true
+  sentry_errors: true
+  slack_notifications: false
+  
+  # Metrics collection
+  collect_deployment_metrics: true
+  collect_validation_metrics: true
+  collect_performance_metrics: true
+
+safety_protocols:
+  auto_approval_threshold: 85  # Safety score for auto-deployment
+  max_consecutive_failures: 3
+  rollback_timeout: 300
+  emergency_contacts: []
+  
+  # Deployment windows
+  production_deploy_hours: "09:00-17:00"  # UTC
+  production_deploy_days: ["Monday", "Tuesday", "Wednesday", "Thursday"]
+  staging_deploy_anytime: true
+  
+  # Validation requirements
+  staging_validation_required_for_prod: true
+  manual_approval_for_emergency: false
+  
+rollback_settings:
+  enabled: true
+  auto_rollback_triggers:
+    - "health_check_failure"
+    - "error_rate_threshold"
+    - "response_time_threshold" 
+    - "build_failure"
+  
+  thresholds:
+    error_rate: 0.05  # 5%
+    response_time: 5.0  # seconds
+    health_check_failures: 3
+  
+  strategies:
+    default: "gradual"
+    emergency: "immediate"
+    
+agent_settings:
+  version: "1.0.0"
+  log_level: "INFO"
+  max_concurrent_deployments: 1
+  deployment_history_retention: 100
+  
+  # Claude integration
+  claude_integration: true
+  response_format: "json"
+  include_debug_info: false
+  
+  # Learning and optimization
+  pattern_learning: true
+  deployment_optimization: true
+  failure_analysis: true
+
+notification_settings:
+  channels: ["console", "log"]
+  
+  events:
+    deployment_start: true
+    deployment_success: true
+    deployment_failure: true
+    validation_failure: true
+    staging_ready: true
+    rollback_triggered: true
+    
+  formats:
+    console: "human_readable"
+    log: "structured_json"
+
+# Environment-specific overrides
+environment_overrides:
+  production:
+    validation_settings:
+      timeout: 1200  # Longer timeout for production validation
+    safety_protocols:
+      auto_approval_threshold: 95  # Higher threshold for production
+    monitoring:
+      slack_notifications: true  # Enable notifications for production

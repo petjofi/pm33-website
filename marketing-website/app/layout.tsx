@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import './globals.css';
-import { generateCSSCustomProperties } from './components/marketing/design-system';
-import { ThemeProvider } from './components/marketing/ThemeProvider';
+import { generateCSSCustomProperties } from '../components/marketing/design-system';
+import { ThemeProvider } from '../components/marketing/ThemeProvider';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pm33.ai'),

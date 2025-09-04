@@ -1,24 +1,35 @@
 {
-  "version": 2,
-  "framework": "nextjs", 
-  "buildCommand": "cd app/frontend && npm run build",
-  "outputDirectory": "app/frontend/.next",
+  "buildCommand": "npm run build",
+  "outputDirectory": ".next",
+  "framework": "nextjs",
   "functions": {
-    "app/frontend/api/**/*.js": {
-      "runtime": "@vercel/node"
+    "app/api/strategic-analysis/route.ts": {
+      "maxDuration": 30
     }
   },
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/strategic-analysis",
+      "destination": "/api/strategic-analysis"
     }
   ],
-  "env": {
-    "NODE_ENV": "production",
-    "NEXT_PUBLIC_SITE_URL": "https://pm-33.io",
-    "DATABASE_URL": "@database_url",
-    "OPENAI_API_KEY": "@openai_api_key",
-    "ANTHROPIC_API_KEY": "@anthropic_api_key"
-  }
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
 }

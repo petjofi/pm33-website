@@ -1,0 +1,141 @@
+// PM33 Core App - Prisma Schema
+// Railway PostgreSQL Database Configuration
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Model - Company users and authentication
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  company   String?
+  name      String?
+  role      String?  @default("PM")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  metrics      Metrics[]
+  scenarios    Scenarios[]
+  chatHistory  ChatHistory[]
+  
+  @@map("users")
+}
+
+// Metrics Model - Company performance tracking
+model Metrics {
+  id          String   @id @default(cuid())
+  userId      String
+  signups     Int      @default(0)
+  mrr         Float    @default(0)
+  churnRate   Float    @default(0)
+  cac         Float    @default(0)
+  ltv         Float    @default(0)
+  nps         Float    @default(0)
+  activeUsers Int      @default(0)
+  features    Int      @default(0)
+  bugs        Int      @default(0)
+  velocity    Float    @default(0)
+  period      String   // 'monthly', 'quarterly', 'yearly'
+  date        DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("metrics")
+}
+
+// Scenarios Model - Strategic analysis scenarios
+model Scenarios {
+  id          String   @id @default(cuid())
+  userId      String
+  type        String   // 'competitive', 'resource', 'market', 'risk'
+  title       String
+  description String?
+  framework   String   // 'ICE', 'RICE', 'Porter', 'SWOT'
+  status      String   @default("draft") // 'draft', 'analyzing', 'complete'
+  priority    String   @default("medium") // 'low', 'medium', 'high', 'critical'
+  impact      Float?   // 1-10 scale
+  confidence  Float?   // 1-10 scale
+  effort      Float?   // 1-10 scale
+  reach       Int?     // For RICE framework
+  results     Json?    // Strategic analysis results
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("scenarios")
+}
+
+// ChatHistory Model - AI conversation tracking
+model ChatHistory {
+  id          String   @id @default(cuid())
+  userId      String
+  sessionId   String   // Group related conversations
+  aiEngine    String   // 'claude', 'openai', 'together', 'groq'
+  aiTeam      String   // 'strategic', 'workflow', 'data', 'communication'
+  query       String
+  response    String
+  context     Json?    // Additional context data
+  tokens      Int?     // Token usage tracking
+  cost        Float?   // Cost tracking
+  rating      Int?     // User rating 1-5
+  createdAt   DateTime @default(now())
+  
+  // Relations
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("chat_history")
+  @@index([userId, sessionId])
+}
+
+// Projects Model - Project tracking and management
+model Projects {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  status      String   @default("active") // 'active', 'paused', 'completed', 'cancelled'
+  priority    String   @default("medium") // 'low', 'medium', 'high', 'critical'
+  progress    Float    @default(0) // 0-100 percentage
+  startDate   DateTime?
+  endDate     DateTime?
+  budget      Float?
+  team        Json?    // Team member assignments
+  milestones  Json?    // Project milestones
+  risks       Json?    // Risk assessments
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("projects")
+}
+
+// Features Model - Feature requests and development tracking
+model Features {
+  id          String   @id @default(cuid())
+  title       String
+  description String?
+  status      String   @default("backlog") // 'backlog', 'planned', 'development', 'testing', 'deployed'
+  priority    String   @default("medium") // 'low', 'medium', 'high', 'critical'
+  effort      Float?   // Story points or hours
+  impact      Float?   // 1-10 scale
+  confidence  Float?   // 1-10 scale
+  reach       Int?     // Number of users affected
+  category    String?  // 'enhancement', 'bug_fix', 'new_feature'
+  assignee    String?
+  reporter    String?
+  labels      Json?    // Feature labels/tags
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  @@map("features")
+}

@@ -1,0 +1,69 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
+  
+  "css.validate": false,
+  "stylelint.enable": true,
+  "stylelint.config": {
+    "rules": {
+      "custom-property-pattern": "^pm33-",
+      "declaration-property-value-allowed-list": {
+        "font-family": ["Inter", "system-ui", "-apple-system", "BlinkMacSystemFont"],
+        "/^padding/": ["/^(0|4|8|12|16|20|24|32|40|48|56|64|80|96|128)px$/"],
+        "/^margin/": ["/^(0|4|8|12|16|20|24|32|40|48|56|64|80|96|128)px$/"],
+        "/^gap/": ["/^(4|8|12|16|24|32|48|64)px$/"],
+        "color": [
+          "#667eea", "#764ba2", "#10b981", "#ffffff", "#0a0e27",
+          "#f8fafc", "#1e293b", "#334155", "#ef4444", "#f59e0b",
+          "#3b82f6", "#6b7280", "#9ca3af", "#d1d5db", "#e5e7eb"
+        ]
+      },
+      "declaration-property-value-disallowed-list": {
+        "font-family": ["Times", "Arial", "Helvetica", "serif"],
+        "color": ["red", "blue", "green", "yellow", "purple", "orange"]
+      }
+    }
+  },
+  
+  "tailwindCSS.validate": true,
+  "tailwindCSS.lint.invalidApply": "error",
+  "tailwindCSS.lint.invalidScreen": "error",
+  "tailwindCSS.lint.invalidVariant": "error",
+  "tailwindCSS.lint.recommendedVariantOrder": "warning",
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#667eea",
+    "statusBar.foreground": "#ffffff",
+    "statusBarItem.hoverBackground": "#764ba2"
+  },
+  "todo-tree.highlights.customHighlight": {
+    "PM33-UI": {
+      "icon": "alert",
+      "type": "line",
+      "foreground": "#ff0000",
+      "background": "#667eea"
+    },
+    "PM33-UX": {
+      "icon": "alert", 
+      "type": "line",
+      "foreground": "#ff0000",
+      "background": "#764ba2"
+    }
+  },
+  "files.associations": {
+    "PM33_COMPLETE_UI_SYSTEM.md": "markdown",
+    "PM33_ Complete _UX_System.md": "markdown"
+  },
+  "recommendations": [
+    "playwright.playwright-test",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint"
+  ]
+}
